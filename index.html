@@ -1,118 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Airvero - Coming Soon</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #eaf6fe;
-      color: #1e2a4a;
-    }
-
-    .main {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px 20px;
-      flex-wrap: wrap;
-    }
-
-    .text-section {
-      flex: 1;
-      max-width: 500px;
-      padding: 20px;
-    }
-
-    .text-section h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    .text-section p {
-      font-size: 1.2rem;
-      margin-top: 20px;
-    }
-
-    .image-section {
-      flex: 1;
-      max-width: 500px;
-      text-align: center;
-    }
-
-    .image-section img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .form-section {
-      text-align: center;
-      margin-top: 40px;
-      padding: 0 20px 40px;
-    }
-
-    .form-section p {
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-
-    .form-section form {
-      display: inline-flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .form-section input[type="email"] {
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 250px;
-    }
-
-    .form-section button {
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: bold;
-      background-color: #f5821f;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .main {
-        flex-direction: column;
-      }
-      .text-section, .image-section {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airvero - Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e6f3fb;
+            font-family: Arial, sans-serif;
+            color: #1e2a4a;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+            padding: 40px 20px 20px;
+        }
+        .left {
+            max-width: 500px;
+            padding: 20px;
+        }
+        .left h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .left p {
+            font-size: 1.2rem;
+        }
+        .right img {
+            max-width: 100%;
+            height: auto;
+        }
+        .form-section {
+            text-align: center;
+            padding: 20px;
+        }
+        .form-section p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .form-section input[type="email"] {
+            padding: 10px;
+            width: 250px;
+            max-width: 80%;
+        }
+        .form-section button {
+            padding: 10px 20px;
+            background-color: #f5821f;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .left, .right {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="main">
-    <div class="text-section">
-      <h1>Coming Soon</h1>
-      <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
+    <div class="container">
+        <div class="left">
+            <h1>Coming Soon</h1>
+            <p>Our AI-powered travel assistant is almost ready for take-off.</p>
+        </div>
+        <div class="right">
+            <img src="airvero-visual-updated.png" alt="Airvero mascots">
+        </div>
     </div>
-    <div class="image-section">
-      <img src="airvero-visual-updated.png" alt="Airvero Mascots">
+    <div class="form-section">
+        <p>Stay in the loop — get launch updates for Airvero!</p>
+        <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+            <input type="email" name="fields[email]" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
     </div>
-  </div>
-
-  <div class="form-section">
-    <p>Stay in the loop — get launch updates for Airvero!</p>
-    <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
-      <input type="email" name="fields[email]" placeholder="Enter your email" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </div>
 </body>
 </html>
+
