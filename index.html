@@ -7,115 +7,112 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #e8f4fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eaf6fe;
       color: #1e2a4a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
     }
 
-    .main-section {
+    .main {
       display: flex;
       flex-direction: row;
-      align-items: center;
       justify-content: center;
-      padding: 40px;
-      max-width: 1200px;
-      width: 100%;
+      align-items: center;
+      padding: 40px 20px 20px;
       flex-wrap: wrap;
     }
 
-    .text-content {
-      flex: 1 1 300px;
+    .text-section {
+      flex: 1;
+      max-width: 500px;
       padding: 20px;
-      text-align: left;
     }
 
-    .text-content h1 {
+    .text-section h1 {
       font-size: 3rem;
       margin: 0;
-      color: #1e2a4a;
     }
 
-    .text-content p {
+    .text-section p {
       font-size: 1.2rem;
       margin-top: 20px;
     }
 
-    .image-content {
-      flex: 1 1 300px;
-      padding: 20px;
+    .image-section {
+      flex: 1;
+      max-width: 500px;
       text-align: center;
     }
 
-    .image-content img {
+    .image-section img {
       max-width: 100%;
       height: auto;
     }
 
     .form-section {
+      text-align: center;
       margin-top: 40px;
-      padding: 20px;
-      width: 100%;
+      padding: 0 20px 40px;
     }
 
-    form {
-      display: flex;
-      justify-content: center;
+    .form-section p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .form-section form {
+      display: inline-flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    input[type="email"] {
+    .form-section input[type="email"] {
       padding: 10px;
-      width: 250px;
+      font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      width: 250px;
     }
 
-    button[type="submit"] {
+    .form-section button {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
       background-color: #f5821f;
       color: white;
-      font-weight: bold;
-      padding: 10px 20px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
 
     @media (max-width: 768px) {
-      .main-section {
+      .main {
         flex-direction: column;
-        text-align: center;
       }
-      .text-content {
+      .text-section, .image-section {
+        max-width: 100%;
         text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <div class="main-section">
-    <div class="text-content">
+  <div class="main">
+    <div class="text-section">
       <h1>Coming Soon</h1>
       <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
     </div>
-    <div class="image-content">
+    <div class="image-section">
       <img src="airvero-visual-updated.png" alt="Airvero Mascots">
     </div>
   </div>
 
   <div class="form-section">
-    <p><em>Stay in the loop — get launch updates for Airvero!</em></p>
+    <p>Stay in the loop — get launch updates for Airvero!</p>
     <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
       <input type="email" name="fields[email]" placeholder="Enter your email" required>
       <button type="submit">Subscribe</button>
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
     </form>
   </div>
 </body>
 </html>
-
