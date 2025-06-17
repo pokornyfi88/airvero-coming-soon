@@ -1,89 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Airvero - Coming Soon</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       background-color: #e8f4fc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .hero {
-      position: relative;
-      max-width: 768px;
-      width: 100%;
-    }
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .form-overlay {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+      color: #1e2a4a;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+    }
+
+    .main-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      max-width: 1200px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .text-content {
+      flex: 1 1 300px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .text-content h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #1e2a4a;
+    }
+
+    .text-content p {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+
+    .image-content {
+      flex: 1 1 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .image-content img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .form-section {
+      margin-top: 40px;
+      padding: 20px;
       width: 100%;
     }
-    .form-overlay p {
-      font-style: italic;
-      color: #1e2a4a;
-      margin: 0 0 10px;
-    }
-    .form-overlay form {
+
+    form {
       display: flex;
+      justify-content: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
-    .form-overlay input[type="email"] {
+
+    input[type="email"] {
       padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      font-size: 14px;
       width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-    .form-overlay button {
-      padding: 10px 20px;
+
+    button[type="submit"] {
       background-color: #f5821f;
-      color: #fff;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
       border: none;
       border-radius: 4px;
-      font-weight: bold;
       cursor: pointer;
     }
-    .form-overlay button:hover {
-      background-color: #e06e00;
-    }
-    @media (max-width: 480px) {
-      .form-overlay form {
+
+    @media (max-width: 768px) {
+      .main-section {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
       }
-      .form-overlay input[type="email"] {
-        width: 90%;
+      .text-content {
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <img src="airvero-visual-updated.png" alt="Airvero Coming Soon Visual" />
-    <div class="form-overlay">
-      <p>Stay in the loop — get launch updates for Airvero!</p>
-      <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
-        <input type="email" name="fields[email]" placeholder="Enter your email" required />
-        <button type="submit">Subscribe</button>
-      </form>
+  <div class="main-section">
+    <div class="text-content">
+      <h1>Coming Soon</h1>
+      <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
     </div>
+    <div class="image-content">
+      <img src="airvero-visual-updated.png" alt="Airvero Mascots">
+    </div>
+  </div>
+
+  <div class="form-section">
+    <p><em>Stay in the loop — get launch updates for Airvero!</em></p>
+    <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+      <input type="email" name="fields[email]" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+    </form>
   </div>
 </body>
 </html>
+
