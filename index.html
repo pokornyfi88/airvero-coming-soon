@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,132 +11,112 @@
       --input-text: #1e2a4a;
       --button-bg: #f5821f;
       --button-hover: #d96d00;
-    }
+    }@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111c23;
+    --text-color: #f0f4f9;
+    --input-bg: #1e2a4a;
+    --input-text: #f0f4f9;
+  }
+}
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #111c23;
-        --text-color: #f0f4f9;
-        --input-bg: #1e2a4a;
-        --input-text: #f0f4f9;
-      }
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      text-align: center;
-    }
+header img {
+  height: 64px;
+  margin-bottom: 20px;
+}
 
-    header img {
-      height: 48px;
-      margin-bottom: 16px;
-    }
+h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      animation: fadeIn 1s ease-out;
-    }
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 32px;
+}
 
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 32px;
-    }
+.mascots {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 32px;
+}
 
-    .mascots {
-      width: 100%;
-      max-width: 360px;
-      margin-bottom: 32px;
-      animation: floatUp 1.2s ease-out;
-    }
+.form-section {
+  max-width: 100%;
+}
 
-    .form-section {
-      max-width: 100%;
-    }
+.form-section p {
+  font-style: italic;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
 
-    .form-section p {
-      font-style: italic;
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+input[type="email"] {
+  padding: 12px;
+  width: 280px;
+  max-width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--input-text);
+}
 
-    input[type="email"] {
-      padding: 12px;
-      width: 280px;
-      max-width: 100%;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: var(--input-bg);
-      color: var(--input-text);
-    }
+button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    button {
-      background-color: var(--button-bg);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+button:hover {
+  background-color: var(--button-hover);
+}
 
-    button:hover {
-      background-color: var(--button-hover);
-    }
+.privacy-note {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
 
-    .privacy-note {
-      font-size: 0.8rem;
-      margin-top: 10px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes floatUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
   <header>
     <img src="assets/airvero-logo.png" alt="Airvero logo" />
-  </header>
-
-  <main>
+  </header>  <main>
     <h1>Coming Soon</h1>
-    <p>
-      Airvero — your AI-powered travel buddy for the best flight deals.
-      Launching soon.
-    </p>
+    <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
     <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" class="mascots" />
-  </main>
-
-  <section class="form-section">
+  </main>  <section class="form-section">
     <p>Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
     <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
       <input type="email" name="fields[email]" placeholder="Enter your email" required />
