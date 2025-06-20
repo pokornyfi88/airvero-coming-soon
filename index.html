@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,128 +8,141 @@
     :root {
       --bg-color: #e6f3fb;
       --text-color: #1e2a4a;
-      --form-bg: white;
-      --input-text: #000;
-    }@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #0c1a24;
-    --text-color: #e6f3fb;
-    --form-bg: #1b2e3f;
-    --input-text: #fff;
-  }
-}
+      --button-bg: #f5821f;
+      --button-text: white;
+      --input-bg: white;
+      --input-text: #1e2a4a;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #0e161d;
+        --text-color: #e6f3fb;
+        --button-bg: #f5821f;
+        --button-text: white;
+        --input-bg: #1e2a4a;
+        --input-text: #ffffff;
+      }
+    }
 
-.main {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  max-width: 1200px;
-  width: 100%;
-  gap: 60px;
-  flex-wrap: wrap;
-}
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-.left {
-  flex: 1 1 400px;
-}
+    img.logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
 
-.left img {
-  max-width: 120px;
-  margin-bottom: 20px;
-}
+    h1 {
+      font-size: 2.5rem;
+      margin: 0.5em 0;
+    }
 
-.left h1 {
-  font-size: 48px;
-  margin: 0;
-}
+    p.description {
+      font-size: 1.2rem;
+      margin-bottom: 1.5em;
+      max-width: 600px;
+    }
 
-.left p {
-  font-size: 18px;
-}
+    .mascots img {
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
 
-.right {
-  flex: 1 1 400px;
-  text-align: center;
-}
+    @media (max-width: 480px) {
+      .mascots img {
+        max-height: 200px;
+        margin-top: 20px;
+      }
 
-.right img {
-  max-width: 100%;
-  height: auto;
-}
+      h1 {
+        font-size: 2rem;
+      }
 
-.form-section {
-  margin-top: 30px;
-  padding: 20px;
-  text-align: center;
-}
+      p.description {
+        font-size: 1rem;
+      }
+    }
 
-.form-section p {
-  font-style: italic;
-  margin-bottom: 10px;
-}
+    .form-section {
+      margin-top: 30px;
+    }
 
-form {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+    .form-section p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
 
-input[type="email"] {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 250px;
-  background-color: var(--form-bg);
-  color: var(--input-text);
-}
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      max-width: 100%;
+    }
 
-button[type="submit"] {
-  background-color: #f5821f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    input[type="email"] {
+      padding: 12px;
+      width: 100%;
+      max-width: 300px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: var(--input-bg);
+      color: var(--input-text);
+    }
 
-button[type="submit"]:hover {
-  background-color: #d96d00;
-}
+    button[type="submit"] {
+      padding: 12px 24px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
+    button[type="submit"]:hover {
+      opacity: 0.9;
+    }
+
+    .privacy-note {
+      font-size: 0.8rem;
+      color: gray;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
-  <div class="main">
-    <div class="left">
-      <img src="assets/airvero-logo.png" alt="Airvero logo" />
-      <h1>Coming Soon</h1>
-      <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
-    </div>
-    <div class="right">
-      <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" />
-    </div>
+  <img src="assets/airvero-logo.png" alt="Airvero logo" class="logo" />
+  <h1>Coming Soon</h1>
+  <p class="description">
+    Airvero — your AI-powered travel buddy for the best flight deals. <br />
+    Launching soon.
+  </p>
+  <div class="mascots">
+    <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" />
   </div>
+
   <div class="form-section">
-    <p>Stay in the loop — get launch updates for <strong>Airvero</strong>!</p>
+    <p>Stay in the loop — get launch updates for <strong>Airvero!</strong></p>
     <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
       <input type="email" name="fields[email]" placeholder="Enter your email" required />
       <button type="submit">Subscribe</button>
     </form>
+    <p class="privacy-note">We respect your privacy. No spam, ever.</p>
   </div>
 </body>
 </html>
