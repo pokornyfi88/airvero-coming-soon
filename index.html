@@ -13,9 +13,7 @@
     }
 
     header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
       padding: 20px;
     }
 
@@ -31,8 +29,8 @@
       justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
-      gap: 60px;
+      padding: 20px;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
@@ -50,20 +48,9 @@
       margin: 0;
     }
 
-    .right {
-      flex: 1 1 400px;
-      text-align: center;
-    }
-
-    .right img {
-      max-width: 100%;
-      height: auto;
-    }
-
     .form-section {
-      text-align: center;
+      text-align: left;
       margin-top: 30px;
-      padding: 20px;
     }
 
     .form-section p {
@@ -73,9 +60,9 @@
 
     form {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
     }
 
     input[type="email"] {
@@ -106,11 +93,33 @@
       margin-top: 10px;
     }
 
+    .right {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .right img {
+      max-width: 100%;
+      height: auto;
+    }
+
     @media (max-width: 768px) {
       .main {
         flex-direction: column;
         text-align: center;
-        gap: 40px;
+      }
+
+      .left {
+        order: 1;
+      }
+
+      .form-section {
+        order: 2;
+        text-align: center;
+      }
+
+      .right {
+        order: 3;
       }
 
       .left h1 {
@@ -122,7 +131,17 @@
       }
 
       .logo {
-        max-width: 140px;
+        max-width: 120px;
+      }
+
+      form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="email"] {
+        width: 90%;
+        max-width: 320px;
       }
     }
   </style>
@@ -136,20 +155,21 @@
   <div class="main">
     <div class="left">
       <h1>Coming Soon</h1>
-      <p>Airvero — your AI-powered travel buddy for the best flight deals.<br>Launching soon.</p>
+      <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
+
+      <div class="form-section">
+        <p>Stay in the loop — get launch updates for Airvero!</p>
+        <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+          <input type="email" name="fields[email]" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="privacy-note">We respect your privacy. No spam, ever.</p>
+      </div>
     </div>
+
     <div class="right">
       <img src="assets/airvero-visual-updated.png" alt="Airvero Mascots" />
     </div>
-  </div>
-
-  <div class="form-section">
-    <p>Stay in the loop — get launch updates for Airvero!</p>
-    <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
-      <input type="email" name="fields[email]" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="privacy-note">We respect your privacy. No spam, ever.</p>
   </div>
 
 </body>
