@@ -8,80 +8,70 @@
     :root {
       --bg-color: #e6f3fb;
       --text-color: #1e2a4a;
-      --button-bg: #f5821f;
-      --button-text: white;
       --input-bg: white;
       --input-text: #1e2a4a;
+      --button-bg: #f5821f;
+      --button-hover: #d96d00;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-color: #0e161d;
-        --text-color: #e6f3fb;
-        --button-bg: #f5821f;
-        --button-text: white;
+        --bg-color: #111c23;
+        --text-color: #f0f4f9;
         --input-bg: #1e2a4a;
-        --input-text: #ffffff;
+        --input-text: #f0f4f9;
       }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 20px;
+      padding: 40px 20px;
       text-align: center;
     }
 
-    img.logo {
-      width: 120px;
-      height: auto;
-      margin-bottom: 20px;
+    header img {
+      height: 48px;
+      margin-bottom: 16px;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin: 0.5em 0;
+      font-size: 3rem;
+      margin-bottom: 16px;
+      animation: fadeIn 1s ease-out;
     }
 
-    p.description {
+    p {
       font-size: 1.2rem;
-      margin-bottom: 1.5em;
       max-width: 600px;
+      margin-bottom: 32px;
     }
 
-    .mascots img {
-      max-width: 100%;
-      height: auto;
-      max-height: 300px;
-    }
-
-    @media (max-width: 480px) {
-      .mascots img {
-        max-height: 200px;
-        margin-top: 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      p.description {
-        font-size: 1rem;
-      }
+    .mascots {
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 32px;
+      animation: floatUp 1.2s ease-out;
     }
 
     .form-section {
-      margin-top: 30px;
+      max-width: 100%;
     }
 
     .form-section p {
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 1rem;
     }
 
     form {
@@ -89,60 +79,71 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      max-width: 100%;
     }
 
     input[type="email"] {
       padding: 12px;
-      width: 100%;
-      max-width: 300px;
+      width: 280px;
+      max-width: 100%;
       font-size: 1rem;
-      border-radius: 4px;
       border: 1px solid #ccc;
-      background-color: var(--input-bg);
+      border-radius: 6px;
+      background: var(--input-bg);
       color: var(--input-text);
     }
 
-    button[type="submit"] {
-      padding: 12px 24px;
+    button {
       background-color: var(--button-bg);
-      color: var(--button-text);
+      color: white;
       border: none;
-      font-weight: bold;
+      padding: 12px 24px;
       font-size: 1rem;
-      border-radius: 4px;
+      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
     }
 
-    button[type="submit"]:hover {
-      opacity: 0.9;
+    button:hover {
+      background-color: var(--button-hover);
     }
 
     .privacy-note {
       font-size: 0.8rem;
-      color: gray;
-      margin-top: 8px;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <img src="assets/airvero-logo.png" alt="Airvero logo" class="logo" />
-  <h1>Coming Soon</h1>
-  <p class="description">
-    Airvero — your AI-powered travel buddy for the best flight deals. <br />
-    Launching soon.
-  </p>
-  <div class="mascots">
-    <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" />
-  </div>
+  <header>
+    <img src="assets/airvero-logo.png" alt="Airvero logo" />
+  </header>
 
-  <div class="form-section">
-    <p>Stay in the loop — get launch updates for <strong>Airvero!</strong></p>
+  <main>
+    <h1>Coming Soon</h1>
+    <p>
+      Airvero — your AI-powered travel buddy for the best flight deals.
+      Launching soon.
+    </p>
+    <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" class="mascots" />
+  </main>
+
+  <section class="form-section">
+    <p>Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
     <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
       <input type="email" name="fields[email]" placeholder="Enter your email" required />
       <button type="submit">Subscribe</button>
     </form>
     <p class="privacy-note">We respect your privacy. No spam, ever.</p>
-  </div>
+  </section>
 </body>
 </html>
