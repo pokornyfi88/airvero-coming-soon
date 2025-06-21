@@ -14,8 +14,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  /* FINÁLNÍ MINIMALIZACE MEZER: Horní padding zmenšen na minimum */
-  padding: 0.5rem 1.5rem 1rem; 
+  padding: 0.75rem 1.5rem 1rem; 
   min-height: 100vh;
   box-sizing: border-box; 
   text-align: center;
@@ -30,6 +29,7 @@ body {
     color: var(--text-dark);
   }
   
+  /* OPRAVA: Přidána tečka před .signup-form */
   .signup-form input[type="email"] {
     background-color: #1e2a4a;
     color: var(--text-dark);
@@ -39,8 +39,7 @@ body {
 
 /* --- Struktura a Layout --- */
 .page-header {
-  /* FINÁLNÍ MINIMALIZACE MEZER: Mezera pod logem dále snížena */
-  margin-bottom: 0.25rem; 
+  margin-bottom: 0; 
   animation: fadeIn 1.5s ease;
 }
 
@@ -69,7 +68,6 @@ main {
 /* --- Typografie --- */
 h1 {
   font-size: clamp(2.5rem, 10vw, 3rem);
-  /* FINÁLNÍ MINIMALIZACE MEZER: Horní okraj prakticky odstraněn */
   margin: 0.25rem 0 0.25rem;
 }
 
@@ -94,3 +92,64 @@ p {
 .signup-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.signup-form label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* OPRAVA: Přidána tečka před .signup-form */
+.signup-form input[type="email"] {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 90%;
+  max-width: 400px;
+  /* Důležité pro obnovení správného vzhledu */
+  box-sizing: border-box; 
+}
+
+/* OPRAVA: Přidána tečka před .signup-form */
+.signup-form button[type="submit"] {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-form button[type="submit"]:hover {
+  background-color: var(--accent-hover);
+}
+
+.privacy-note {
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+  opacity: 0.8;
+}
+
+/* --- Media Queries a Animace --- */
+@media (min-width: 768px) {
+  .page-header img {
+    width: 180px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
