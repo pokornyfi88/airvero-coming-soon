@@ -1,146 +1,37 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"> <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates.">
+  
   <title>Airvero - Coming Soon</title>
-  <style>
-    :root {
-      --bg-light: #e6f3fb;
-      --bg-dark: #0f1a21;
-      --text-light: #1e2a4a;
-      --text-dark: #ffffff;
-      --accent: #f5821f;
-    }@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-  }
-  .form-section input {
-    background-color: #1e2a4a;
-    color: white;
-    border-color: #333;
-  }
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 0;
-  animation: fadeIn 1.5s ease;
-}
-
-.logo-container img {
-  width: 140px;
-  height: auto;
-  transition: transform 0.4s ease;
-}
-
-.logo-container img:hover {
-  transform: scale(1.05);
-}
-
-@media (min-width: 768px) {
-  .logo-container img {
-    width: 180px;
-  }
-}
-
-h1 {
-  font-size: 48px;
-  margin: 20px 0 10px;
-}
-
-p {
-  font-size: 18px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-.mascot {
-  max-width: 320px;
-  width: 100%;
-  height: auto;
-  animation: fadeIn 1.5s ease 0.3s both;
-}
-
-.form-section {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.form-section p {
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-input[type="email"] {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 90%;
-  max-width: 400px;
-}
-
-button[type="submit"] {
-  background-color: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #d96d00;
-}
-
-.privacy-note {
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-  </style>
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="logo-container">
+
+  <header class="page-header">
     <img src="assets/airvero-logo.png" alt="Airvero Logo">
-  </div>
-  <h1>Coming Soon</h1>
-  <p>Airvero — your AI-powered travel buddy for the best flight deals. Launching soon.</p>
-  <img src="assets/airvero-visual-updated.png" alt="Airvero mascots" class="mascot">  <div class="form-section">
-    <p>Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
-    <form action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
-      <input type="email" name="fields[email]" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="privacy-note">We respect your privacy. No spam, ever.</p>
-  </div>
+  </header>
+
+  <main>
+    <h1>Coming Soon</h1>
+    <p>Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.</p>
+    <img src="assets/airvero-visual-updated.png" alt="Two friendly Airvero mascot characters" class="mascot">
+    
+    <section class="form-section">
+      <p>Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
+      
+      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+        <label for="email-input">Enter your email</label>
+        <input type="email" id="email-input" name="fields[email]" placeholder="Enter your email" required />
+        <button type="submit">Notify Me</button>
+      </form>
+      
+      <p class="privacy-note">We respect your privacy. No spam, ever.</p>
+    </section>
+  </main>
+
 </body>
 </html>
