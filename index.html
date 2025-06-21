@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en"> <head>
+<html lang="en"> 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates.">
-  
   <title>Airvero - Coming Soon</title>
-  
   <link rel="stylesheet" href="style.css">
+
+  <!-- MailerLite JS -->
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 </head>
+
 <body>
 
   <header class="page-header">
@@ -23,7 +25,7 @@
     <section class="form-section">
       <p>Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
       
-      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+      <form id="mlb2-27344978" class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank" onsubmit="setTimeout(function() { ml_webform_success_27344978(); }, 10);">
         <label for="email-input">Enter your email</label>
         <input type="email" id="email-input" name="fields[email]" placeholder="Enter your email" required />
         <button type="submit">Notify Me</button>
@@ -32,6 +34,17 @@
       <p class="privacy-note">We respect your privacy. No spam, ever.</p>
     </section>
   </main>
+
+  <!-- Redirect script -->
+  <script>
+    function ml_webform_success_27344978() {
+      try {
+        window.top.location.href = 'https://airvero.com/thank-you.html';
+      } catch (e) {
+        window.location.href = 'https://airvero.com/thank-you.html';
+      }
+    }
+  </script>
 
 </body>
 </html>
