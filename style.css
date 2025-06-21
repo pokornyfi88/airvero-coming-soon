@@ -14,7 +14,8 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  padding: 0.75rem 1.5rem 1rem; 
+  /* KONTROLA: Absolutně minimální horní padding */
+  padding: 0.5rem 1.5rem 1rem; 
   min-height: 100vh;
   box-sizing: border-box; 
   text-align: center;
@@ -29,7 +30,6 @@ body {
     color: var(--text-dark);
   }
   
-  /* OPRAVA: Přidána tečka před .signup-form */
   .signup-form input[type="email"] {
     background-color: #1e2a4a;
     color: var(--text-dark);
@@ -39,6 +39,7 @@ body {
 
 /* --- Struktura a Layout --- */
 .page-header {
+  /* KONTROLA: Mezera pod logem je prakticky nulová */
   margin-bottom: 0; 
   animation: fadeIn 1.5s ease;
 }
@@ -68,13 +69,15 @@ main {
 /* --- Typografie --- */
 h1 {
   font-size: clamp(2.5rem, 10vw, 3rem);
+  /* KONTROLA: Minimální mezera nad nadpisem */
   margin: 0.25rem 0 0.25rem;
 }
 
+/* KONTROLA: Zmenšena mezera pod hlavním odstavcem */
 p {
   font-size: 1.125rem;
   max-width: 60ch;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1rem;
   line-height: 1.6;
 }
 
@@ -107,7 +110,6 @@ p {
   border: 0;
 }
 
-/* OPRAVA: Přidána tečka před .signup-form */
 .signup-form input[type="email"] {
   padding: 0.75rem;
   font-size: 1rem;
@@ -115,11 +117,9 @@ p {
   border: 1px solid #ccc;
   width: 90%;
   max-width: 400px;
-  /* Důležité pro obnovení správného vzhledu */
   box-sizing: border-box; 
 }
 
-/* OPRAVA: Přidána tečka před .signup-form */
 .signup-form button[type="submit"] {
   background-color: var(--accent);
   color: white;
