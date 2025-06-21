@@ -153,3 +153,41 @@ p {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* =============================================== */
+/* === Styly pro Děkovací Stránku (thank-you.html) === */
+/* TENTO KÓD PŘIDEJTE NA KONEC VAŠEHO SOUBORU style.css */
+/* =============================================== */
+
+.content-container {
+    width: 100%;
+    animation: fadeIn 1.5s ease;
+}
+
+.thank-you-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Použijeme min-height pro flexibilitu */
+}
+
+/* Upravíme mezeru pod odstavcem na děkovací stránce */
+.thank-you-container p {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    background-color: var(--accent);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
