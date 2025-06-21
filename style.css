@@ -19,8 +19,12 @@ body {
   align-items: center;
   padding: 1.5rem;
   min-height: 100vh;
-  box-sizing: border-box; /* Zajišťuje, že padding neovlivní celkovou šířku/výšku */
+  box-sizing: border-box; 
   text-align: center;
+  
+  /* PŘIDÁNO: Toto opraví problém s šířkou na 100% zoomu */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Pravidla pro tmavý režim v prohlížeči/systému */
