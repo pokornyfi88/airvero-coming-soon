@@ -14,15 +14,12 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 1.5rem;
   min-height: 100vh;
   box-sizing: border-box; 
   text-align: center;
   
-  /* PŘIDÁNO: Toto opraví problém s šířkou na 100% zoomu */
+  /* Předchozí oprava - ponecháme ji pro jistotu */
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -94,6 +91,7 @@ p {
 }
 
 .signup-form {
+  /* ZDE NENÍ TŘEBA NIC MĚNIT, TOTO JE LOKÁLNÍ FLEXBOX PRO FORMULÁŘ */
   display: flex;
   flex-direction: column;
   align-items: center;
