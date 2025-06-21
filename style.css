@@ -14,7 +14,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  /* ZMĚNA: Snížen horní a dolní padding pro menší mezeru nad a pod obsahem */
+  /* Snížený vertikální padding pro menší mezeru nahoře a dole */
   padding: 1rem 1.5rem; 
   min-height: 100vh;
   box-sizing: border-box; 
@@ -39,8 +39,8 @@ body {
 
 /* --- Struktura a Layout --- */
 .page-header {
-  /* ZMĚNA: Snížena mezera pod logem */
-  margin-bottom: 1rem; 
+  /* Velmi malá mezera pod logem */
+  margin-bottom: 0.5rem; 
   animation: fadeIn 1.5s ease;
 }
 
@@ -62,7 +62,6 @@ main {
   max-width: 320px;
   width: 100%;
   height: auto;
-  /* ZMĚNA: Snížena vertikální mezera kolem maskota */
   margin: 1rem 0; 
   animation: fadeIn 1.5s ease 0.3s both;
 }
@@ -70,7 +69,8 @@ main {
 /* --- Typografie --- */
 h1 {
   font-size: clamp(2.5rem, 10vw, 3rem);
-  margin: 0 0 0.5rem;
+  /* Snížené okraje pro přiblížení k logu */
+  margin: 0.5rem 0 0.25rem;
 }
 
 p {
@@ -82,7 +82,7 @@ p {
 
 /* --- Formulář --- */
 .form-section {
-  /* ZMĚNA: Snížena mezera nad formulářem, aby byl blíže k maskotům */
+  /* Malá mezera nad formulářem */
   margin-top: 0.5rem; 
 }
 
