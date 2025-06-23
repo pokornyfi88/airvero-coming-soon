@@ -14,7 +14,6 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  /* KONTROLA: Absolutně minimální horní padding */
   padding: 0.5rem 1.5rem 1rem; 
   min-height: 100vh;
   box-sizing: border-box; 
@@ -23,7 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Pravidla pro tmavý režim v prohlížeči/systému */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--bg-dark);
@@ -39,7 +37,6 @@ body {
 
 /* --- Struktura a Layout --- */
 .page-header {
-  /* KONTROLA: Mezera pod logem je prakticky nulová */
   margin-bottom: 0; 
   animation: fadeIn 1.5s ease;
 }
@@ -69,11 +66,9 @@ main {
 /* --- Typografie --- */
 h1 {
   font-size: clamp(2.5rem, 10vw, 3rem);
-  /* KONTROLA: Minimální mezera nad nadpisem */
   margin: 0.25rem 0 0.25rem;
 }
 
-/* KONTROLA: Zmenšena mezera pod hlavním odstavcem */
 p {
   font-size: 1.125rem;
   max-width: 60ch;
@@ -97,17 +92,6 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-}
-
-.signup-form label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 
 .signup-form input[type="email"] {
@@ -153,48 +137,9 @@ p {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* =============================================== */
-/* === Styly pro Děkovací Stránku (thank-you.html) === */
-/* TENTO KÓD PŘIDEJTE NA KONEC VAŠEHO SOUBORU style.css */
-/* =============================================== */
 
-.content-container {
-    width: 100%;
-    animation: fadeIn 1.5s ease;
-}
-
-.thank-you-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Použijeme min-height pro flexibilitu */
-}
-
-/* Upravíme mezeru pod odstavcem na děkovací stránce */
-.thank-you-container p {
-    margin-bottom: 2rem;
-}
-
-.back-link {
-    display: inline-block;
-    background-color: var(--accent);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.back-link:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-}
 /* ================================== */
 /* === Styly pro Přepínač Jazyků === */
-/* TENTO KÓD PŘIDEJTE NA KONEC VAŠEHO */
-/* SOUBORU style.css           */
 /* ================================== */
 
 #lang-switcher {
@@ -246,7 +191,7 @@ p {
   }
 }
 
-/* Skrytý label pro screen readery - je potřeba pro přístupnost formuláře */
+/* Skrytý label pro screen readery */
 .sr-only {
   position: absolute;
   width: 1px;
