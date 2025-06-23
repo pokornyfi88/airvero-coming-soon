@@ -191,3 +191,71 @@ p {
     background-color: var(--accent-hover);
     transform: translateY(-2px);
 }
+/* ================================== */
+/* === Styly pro Přepínač Jazyků === */
+/* TENTO KÓD PŘIDEJTE NA KONEC VAŠEHO */
+/* SOUBORU style.css           */
+/* ================================== */
+
+#lang-switcher {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(5px); /* Pro Safari */
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap; /* Povolí zalamování na extra úzkých obrazovkách */
+  justify-content: flex-end; /* Zarovná k pravému okraji, pokud se zalomí */
+  gap: 5px; /* Mírně menší mezera pro mobilní zařízení */
+  z-index: 100;
+  max-width: calc(100% - 30px); /* Omezení šířky, aby nepřetekl */
+}
+
+#lang-switcher a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 6px; /* Mírně upravený padding */
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#lang-switcher a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#lang-switcher a.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Tmavý režim pro přepínač */
+@media (prefers-color-scheme: dark) {
+  #lang-switcher {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  #lang-switcher a {
+    color: var(--text-dark);
+  }
+  #lang-switcher a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Skrytý label pro screen readery - je potřeba pro přístupnost formuláře */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
