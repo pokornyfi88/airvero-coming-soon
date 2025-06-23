@@ -28,8 +28,8 @@
   </header>
   
   <main>
-    <!-- ZMĚNA: Přidány data-key atributy pro snadné cílení v JS -->
-    <!-- ZMĚNA: Obsah je nyní předvyplněn v angličtině pro SEO -->
+    <!-- Atributy data-key pro snadné cílení v JS -->
+    <!-- Obsah je předvyplněn v angličtině pro SEO -->
     <h1 data-key="title">Coming Soon</h1>
     <p class="main-desc" data-key="subtitle">Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.</p>
     
@@ -38,7 +38,7 @@
     <section class="form-section">
       <p class="form-text" data-key="formText">Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
       
-      <!-- ZMĚNA: Odstraněn nebezpečný onsubmit atribut -->
+      <!-- Formulář se spoléhá na přesměrování od MailerLite -->
       <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
         <label for="email-input" class="sr-only">Email</label>
         <input type="email" id="email-input" name="fields[email]" required placeholder="Enter your email" data-key="emailPlaceholder" />
@@ -49,7 +49,7 @@
     </section>
   </main>
 
-  <!-- Přesunuto na konec body pro rychlejší načítání stránky -->
+  <!-- Skript přesunut na konec pro rychlejší načítání stránky -->
   <script>
     const translations = {
       cs: {
@@ -127,30 +127,24 @@
     };
 
     function applyTranslations(lang) {
-      // Získáme správný překladový objekt
       const t = translations[lang];
-      if (!t) return; // Pokud překlad neexistuje, nic neděláme
+      if (!t) return;
 
-      // Změníme jazyk celého dokumentu pro SEO a přístupnost
       document.documentElement.lang = lang;
 
-      // Projdeme všechny elementy, které mají data-key atribut
       document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
+        if (!t[key]) return;
         
-        // Speciální pravidla pro různé elementy
         if (key === 'emailPlaceholder') {
           element.placeholder = t[key];
-        } else if (element.innerHTML.includes('<strong>')) {
-          // Pokud text obsahuje HTML, použijeme innerHTML
+        } else if (element.innerHTML.includes('<') && element.innerHTML.includes('>')) {
           element.innerHTML = t[key];
         } else {
-          // Jinak použijeme bezpečnější innerText
           element.innerText = t[key];
         }
       });
 
-      // Zvýrazníme aktivní jazyk v přepínači
       document.querySelectorAll('#lang-switcher a').forEach(a => {
         a.classList.remove('active');
         if (a.getAttribute('data-lang') === lang) {
@@ -160,30 +154,25 @@
     }
 
     function getInitialLang() {
-        // 1. Zkontrolujeme, zda uživatel nemá jazyk uložený z minulé návštěvy
         const savedLang = localStorage.getItem('user-lang');
         if (savedLang && translations[savedLang]) {
             return savedLang;
         }
 
-        // 2. Pokud ne, detekujeme jazyk prohlížeče
         const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
-        return translations[browserLang] ? browserLang : 'en'; // Výchozí je angličtina
+        return translations[browserLang] ? browserLang : 'en';
     }
     
-    // Po načtení stránky
     document.addEventListener('DOMContentLoaded', () => {
       const initialLang = getInitialLang();
       applyTranslations(initialLang);
 
-      // Přidáme funkcionalitu přepínači jazyků
       const langSwitcher = document.getElementById('lang-switcher');
       langSwitcher.addEventListener('click', (event) => {
-        event.preventDefault(); // Zabráníme přechodu na #
+        event.preventDefault(); 
         const selectedLang = event.target.getAttribute('data-lang');
         if (selectedLang) {
           applyTranslations(selectedLang);
-          // Uložíme volbu uživatele pro příští návštěvu
           localStorage.setItem('user-lang', selectedLang);
         }
       });
