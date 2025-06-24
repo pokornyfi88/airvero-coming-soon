@@ -3,26 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- SEO Popis -->
+  <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates.">
   <title>Airvero - Coming Soon</title>
-  <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates and be the first to know!">
-  
-  <!-- Favicona (ikonka v záložce a vyhledávání) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
 
-  <!-- Strukturovaná data pro Google (Schema.org) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Airvero",
-    "url": "https://airvero.com",
-    "logo": "https://airvero.com/assets/airvero-logo.png",
-    "description": "AI-powered travel buddy for the best flight deals."
-  }
-  </script>
-
+  <!-- Veškeré CSS styly jsou vloženy přímo sem -->
   <style>
     :root {
       --bg-light: #e6f3fb;
@@ -50,7 +34,6 @@
       .signup-form input[type="email"] { background-color: #1e2a4a; color: var(--text-dark); border-color: #333; }
     }
     .page-header { margin-bottom: 0.5rem; animation: fadeIn 1.5s ease; }
-    .page-header img { width: 140px; height: auto; transition: transform 0.4s ease; }
     main { width: 100%; max-width: 600px; margin: 0 auto; }
     .mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem 0; animation: fadeIn 1.5s ease 0.3s both; }
     h1 { font-size: clamp(2.5rem, 10vw, 3rem); margin: 0.25rem 0; }
@@ -59,8 +42,10 @@
     .form-section p { font-style: italic; margin-bottom: 1rem; font-size: 1rem; }
     .signup-form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .signup-form input[type="email"] { padding: 0.75rem; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; width: 90%; max-width: 400px; box-sizing: border-box; }
-    .signup-form button[type="submit"] { background-color: var(--accent); color: white; border: none; padding: 0.8rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; }
+    .signup-form button[type="submit"] { background-color: var(--accent); color: white; border: none; padding: 0.8rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; min-width: 120px; }
+    .signup-form button:disabled { background-color: #ccc; cursor: not-allowed; }
     .privacy-note { font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.8; }
+    #form-error { color: #d7141a; font-weight: bold; margin-top: 10px; display: none; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
     #lang-switcher {
@@ -85,8 +70,7 @@
       border-radius: 50%;
       padding: 0;
       cursor: pointer;
-      width: 26px;
-      height: 26px;
+      width: 26px; height: 26px;
       min-width: 26px;
       display: flex;
       align-items: center;
@@ -95,12 +79,7 @@
     }
     #lang-switcher button:hover { transform: scale(1.1); }
     #lang-switcher button.active { border-color: var(--accent); }
-    #lang-switcher svg {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
+    #lang-switcher svg { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
   </style>
 </head>
 <body>
@@ -108,6 +87,7 @@
   <div id="lang-switcher">
     <button data-lang="en" aria-label="Switch to English"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#00247d" d="M0 0h5v3H0z"/><path fill="#fff" d="m0 0 5 3m0-3L0 3"/><path stroke="#cf142b" stroke-width=".6" d="m0 0 5 3m0-3L0 3"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#fff" stroke-width=".2"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#cf142b" stroke-width=".2"/></svg></button>
     <button data-lang="cs" aria-label="Přepnout na Češtinu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#d7141a" d="M0 1.5h5v1.5H0z"/><path fill="#11457e" d="m0 0 2 1.5L0 3z"/></svg></button>
+    <!-- ... (ostatní vlajky) ... -->
     <button data-lang="de" aria-label="Auf Deutsch umschalten"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path d="M0 0h5v3H0z"/><path fill="#d00" d="M0 1h5v1H0z"/><path fill="#ffce00" d="M0 2h5v1H0z"/></svg></button>
     <button data-lang="pl" aria-label="Przełącz na Polski"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#dc143c" d="M0 1.5h5v1.5H0z"/></svg></button>
     <button data-lang="uk" aria-label="Переключитися на Українську"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#0057b7" d="M0 0h5v3H0z"/><path fill="#ffd700" d="M0 1.5h5v1.5H0z"/></svg></button>
@@ -127,132 +107,79 @@
     <img src="assets/airvero-visual-updated.png" alt="Two friendly Airvero mascot characters" class="mascot">
     <section class="form-section">
       <p class="form-text" data-key="formText">Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
-      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+      
+      <!-- ZMĚNA: action atribut je pryč, budeme odesílat přes JS -->
+      <form class="signup-form" id="signup-form">
         <label for="email-input" class="sr-only">Email</label>
         <input type="email" id="email-input" name="fields[email]" required placeholder="Enter your email" data-key="emailPlaceholder" />
-        <button type="submit" data-key="buttonText">Notify Me</button>
+        <button type="submit" data-key="buttonText" id="submit-button">Notify Me</button>
       </form>
+      
+      <div id="form-error"></div>
       <p class="privacy-note" data-key="privacyNote">We respect your privacy. No spam, ever.</p>
     </section>
   </main>
 
   <script>
+    // Překlady (zůstávají stejné)
     const translations = {
-      cs: {
-        title: "Uvedení brzy",
-        subtitle: "Airvero — váš AI pomocník pro nejlepší nabídky letenek. Připravujeme start.",
-        formText: "Zůstaňte v obraze — získejte novinky o spuštění <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Zadejte svůj e-mail",
-        buttonText: "Upozornit mě",
-        privacyNote: "Vaše soukromí je pro nás důležité. Žádný spam."
-      },
-      en: {
-        title: "Coming Soon",
-        subtitle: "Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.",
-        formText: "Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Enter your email",
-        buttonText: "Notify Me",
-        privacyNote: "We respect your privacy. No spam, ever."
-      },
-      de: {
-        title: "Kommt bald",
-        subtitle: "Airvero – Ihr KI-Reisebegleiter für die besten Flugangebote. Der Start wird vorbereitet.",
-        formText: "Bleiben Sie informiert – erhalten Sie Updates zur Markteinführung von <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Geben Sie Ihre E-Mail ein",
-        buttonText: "Benachrichtigen",
-        privacyNote: "Wir respektieren Ihre Privatsphäre. Kein Spam."
-      },
-      pl: {
-        title: "Wkrótce",
-        subtitle: "Airvero — Twój AI towarzysz podróży, najlepsze oferty lotów. Start wkrótce.",
-        formText: "Bądź na bieżąco — otrzymuj informacje o starcie <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Wpisz swój e-mail",
-        buttonText: "Powiadom mnie",
-        privacyNote: "Szanujemy Twoją prywatność. Zero spamu."
-      },
-      uk: {
-        title: "Скоро старт",
-        subtitle: "Airvero — ваш помічник з AI для пошуку найкращих авіаквитків.",
-        formText: "Будьте в курсі — отримуйте новини про запуск <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Введіть свою електронну пошту",
-        buttonText: "Повідомити мене",
-        privacyNote: "Ми поважаємо вашу конфіденційність. Ніякого спаму."
-      },
-      it: {
-        title: "Prossimamente",
-        subtitle: "Airvero — il tuo compagno di viaggio AI per le migliori offerte di volo.",
-        formText: "Resta aggiornato — ricevi novità sul lancio di <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Inserisci la tua email",
-        buttonText: "Avvisami",
-        privacyNote: "Rispettiamo la tua privacy. Niente spam."
-      },
-      fr: {
-        title: "Bientôt disponible",
-        subtitle: "Airvero — votre assistant de voyage IA pour les meilleures offres de vols.",
-        formText: "Restez informé — recevez les mises à jour du lancement de <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Entrez votre e-mail",
-        buttonText: "Me notifier",
-        privacyNote: "Nous respectons votre vie privée. Jamais de spam."
-      },
-      es: {
-        title: "Próximamente",
-        subtitle: "Airvero — tu compañero de viaje con IA para las mejores ofertas de vuelos.",
-        formText: "Mantente informado — recibe noticias del lanzamiento de <strong><em>Airvero!</em></strong>",
-        emailPlaceholder: "Introduce tu correo",
-        buttonText: "Notificarme",
-        privacyNote: "Respetamos tu privacidad. Nada de spam."
-      },
-      zh: {
-        title: "即将推出",
-        subtitle: "Airvero — 您的AI旅行助手，帮您发现最优航班优惠。",
-        formText: "保持关注 — 获取 <strong><em>Airvero!</em></strong> 的最新消息",
-        emailPlaceholder: "请输入您的邮箱",
-        buttonText: "通知我",
-        privacyNote: "我们尊重您的隐私，绝不发送垃圾邮件。"
-      }
+      cs: { title: "Uvedení brzy", subtitle: "Airvero — váš AI pomocník pro nejlepší nabídky letenek. Připravujeme start.", formText: "Zůstaňte v obraze — získejte novinky o spuštění <strong><em>Airvero!</em></strong>", emailPlaceholder: "Zadejte svůj e-mail", buttonText: "Upozornit mě", privacyNote: "Vaše soukromí je pro nás důležité. Žádný spam." },
+      en: { title: "Coming Soon", subtitle: "Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.", formText: "Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong>", emailPlaceholder: "Enter your email", buttonText: "Notify Me", privacyNote: "We respect your privacy. No spam, ever." },
+      de: { title: "Kommt bald", subtitle: "Airvero – Ihr KI-Reisebegleiter für die besten Flugangebote. Der Start wird vorbereitet.", formText: "Bleiben Sie informiert – erhalten Sie Updates zur Markteinführung von <strong><em>Airvero!</em></strong>", emailPlaceholder: "Geben Sie Ihre E-Mail ein", buttonText: "Benachrichtigen", privacyNote: "Wir respektieren Ihre Privatsphäre. Kein Spam." },
+      pl: { title: "Wkrótce", subtitle: "Airvero — Twój AI towarzysz podróży, najlepsze oferty lotów. Start wkrótce.", formText: "Bądź na bieżąco — otrzymuj informacje o starcie <strong><em>Airvero!</em></strong>", emailPlaceholder: "Wpisz swój e-mail", buttonText: "Powiadom mnie", privacyNote: "Szanujemy Twoją prywatność. Zero spamu." },
+      uk: { title: "Скоро старт", subtitle: "Airvero — ваш помічник з AI для пошуку найкращих авіаквитків.", formText: "Будьте в курсі — отримуйте новини про запуск <strong><em>Airvero!</em></strong>", emailPlaceholder: "Введіть свою електронну пошту", buttonText: "Повідомити мене", privacyNote: "Ми поважаємо вашу конфіденційність. Ніякого спаму." },
+      it: { title: "Prossimamente", subtitle: "Airvero — il tuo compagno di viaggio AI per le migliori offerte di volo.", formText: "Resta aggiornato — ricevi novità sul lancio di <strong><em>Airvero!</em></strong>", emailPlaceholder: "Inserisci la tua email", buttonText: "Avvisami", privacyNote: "Rispettiamo la tua privacy. Niente spam." },
+      fr: { title: "Bientôt disponible", subtitle: "Airvero — votre assistant de voyage IA pour les meilleures offres de vols.", formText: "Restez informé — recevez les mises à jour du lancement de <strong><em>Airvero!</em></strong>", emailPlaceholder: "Entrez votre e-mail", buttonText: "Me notifier", privacyNote: "Nous respectons votre vie privée. Jamais de spam." },
+      es: { title: "Próximamente", subtitle: "Airvero — tu compañero de viaje con IA para las mejores ofertas de vuelos.", formText: "Mantente informado — recibe noticias del lanzamiento de <strong><em>Airvero!</em></strong>", emailPlaceholder: "Introduce tu correo", buttonText: "Notificarme", privacyNote: "Respetamos tu privacidad. Nada de spam." },
+      zh: { title: "即将推出", subtitle: "Airvero — 您的AI旅行助手，帮您发现最优航班优惠。", formText: "保持关注 — 获取 <strong><em>Airvero!</em></strong> 的最新消息", emailPlaceholder: "请输入您的邮箱", buttonText: "通知我", privacyNote: "我们尊重您的隐私，绝不发送垃圾邮件。" }
     };
+    function applyTranslations(lang) { /* ... (zůstává stejná) ... */ const t = translations[lang]; if (!t) return; document.documentElement.lang = lang; document.querySelectorAll('[data-key]').forEach(element => { const key = element.getAttribute('data-key'); if (t[key] !== undefined) { if (key === 'emailPlaceholder') element.placeholder = t[key]; else if (key === 'formText') element.innerHTML = t[key]; else element.innerText = t[key]; } }); document.querySelectorAll('#lang-switcher button').forEach(button => { button.classList.remove('active'); if (button.getAttribute('data-lang') === lang) button.classList.add('active'); }); }
+    function getInitialLang() { /* ... (zůstává stejná) ... */ const savedLang = localStorage.getItem('user-lang'); if (savedLang && translations[savedLang]) return savedLang; const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase(); return translations[browserLang] ? browserLang : 'en'; }
 
-    function applyTranslations(lang) {
-      const t = translations[lang];
-      if (!t) return;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-key]').forEach(element => {
-        const key = element.getAttribute('data-key');
-        if (t[key] !== undefined) {
-          if (key === 'emailPlaceholder') { element.placeholder = t[key]; }
-          else if (key === 'formText') { element.innerHTML = t[key]; }
-          else { element.innerText = t[key]; }
-        }
-      });
-      document.querySelectorAll('#lang-switcher button').forEach(button => {
-        button.classList.remove('active');
-        if (button.getAttribute('data-lang') === lang) {
-          button.classList.add('active');
-        }
-      });
-    }
-
-    function getInitialLang() {
-        const savedLang = localStorage.getItem('user-lang');
-        if (savedLang && translations[savedLang]) return savedLang;
-        const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
-        return translations[browserLang] ? browserLang : 'en';
-    }
-    
+    // Po načtení stránky
     document.addEventListener('DOMContentLoaded', () => {
+      // Funkce pro jazyky (zůstává stejná)
       const initialLang = getInitialLang();
       applyTranslations(initialLang);
       const langSwitcher = document.getElementById('lang-switcher');
-      langSwitcher.addEventListener('click', (event) => {
-        const button = event.target.closest('button');
-        if (button) {
-            event.preventDefault(); 
-            const selectedLang = button.getAttribute('data-lang');
-            if (selectedLang) {
-                applyTranslations(selectedLang);
-                localStorage.setItem('user-lang', selectedLang);
-            }
-        }
+      langSwitcher.addEventListener('click', (event) => { const button = event.target.closest('button'); if (button) { event.preventDefault(); const selectedLang = button.getAttribute('data-lang'); if (selectedLang) { applyTranslations(selectedLang); localStorage.setItem('user-lang', selectedLang); } } });
+
+      // NOVÁ LOGIKA PRO ODESLÁNÍ FORMULÁŘE
+      const form = document.getElementById('signup-form');
+      const submitButton = document.getElementById('submit-button');
+      const errorDiv = document.getElementById('form-error');
+
+      form.addEventListener('submit', function(event) {
+        // Zabráníme výchozímu odeslání
+        event.preventDefault();
+
+        // Zobrazíme, že se formulář odesílá
+        const originalButtonText = submitButton.innerText;
+        submitButton.innerText = 'Odesílám...';
+        submitButton.disabled = true;
+        errorDiv.style.display = 'none';
+
+        // Připravíme data pro odeslání
+        const formData = new FormData(form);
+        const url = 'https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe';
+        
+        // Odešleme data na pozadí
+        fetch(url, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Důležité, aby prohlížeč neblokoval požadavek
+        })
+        .then(() => {
+          // I když 'no-cors' nevrátí odpověď, předpokládáme úspěch a přesměrujeme
+          window.location.href = './thank-you.html';
+        })
+        .catch(error => {
+          // V případě chyby sítě
+          errorDiv.innerText = 'Odeslání selhalo. Zkuste to prosím znovu.';
+          errorDiv.style.display = 'block';
+          submitButton.innerText = originalButtonText;
+          submitButton.disabled = false;
+        });
       });
     });
   </script>
