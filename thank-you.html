@@ -5,9 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thank You - Airvero</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
-    <link rel="stylesheet" href="style.css?v=final_fix_2">
+    
+    <!-- FINÁLNÍ OPRAVA: Všechny styly jsou vloženy přímo sem -->
+    <style>
+        :root {
+            --bg-light: #e6f3fb;
+            --bg-dark: #0f1a21;
+            --text-light: #1e2a4a;
+            --text-dark: #ffffff;
+            --accent: #f5821f;
+            --accent-hover: #d96d00;
+        }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            padding: 1rem;
+            box-sizing: border-box; 
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        @media (prefers-color-scheme: dark) {
+            body { background-color: var(--bg-dark); color: var(--text-dark); }
+        }
+        .page-header { margin-bottom: 0.5rem; }
+        .page-header img { width: 140px; height: auto; }
+        main { width: 100%; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem 0; }
+        h1 { font-size: clamp(2.5rem, 10vw, 3rem); margin: 0.25rem 0; }
+        p { font-size: 1.125rem; max-width: 60ch; margin: 0 auto 2rem; line-height: 1.6; }
+        .back-link {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .back-link:hover { transform: translateY(-2px); }
+    </style>
 </head>
-<body class="thank-you-container">
+<body>
 
     <main>
         <header class="page-header">
