@@ -8,7 +8,7 @@
 
   <!-- FINÁLNÍ ŘEŠENÍ: Veškeré CSS styly jsou vloženy přímo sem -->
   <style>
-    /* Globální CSS proměnné pro snadnou změnu barev */
+    /* Globální CSS proměnné */
     :root {
       --bg-light: #e6f3fb;
       --bg-dark: #0f1a21;
@@ -17,101 +17,110 @@
       --accent: #f5821f;
       --accent-hover: #d96d00;
     }
-
-    /* --- Základní styly a Dark Mode --- */
+    /* Základní styly */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: var(--bg-light);
       color: var(--text-light);
-      padding-top: 70px; /* Větší padding, aby logo nebylo překryto přepínačem */
+      padding-top: 70px;
       padding-left: 1rem;
       padding-right: 1rem;
-      padding-bottom: 1rem;
+      padding-bottom: 2rem;
       box-sizing: border-box; 
       text-align: center;
-      max-width: 100%;
-      overflow-x: hidden;
+      min-height: 100vh;
     }
-
     @media (prefers-color-scheme: dark) {
       body { background-color: var(--bg-dark); color: var(--text-dark); }
       .signup-form input[type="email"] { background-color: #1e2a4a; color: var(--text-dark); border-color: #333; }
     }
-
-    /* --- Struktura a Layout --- */
     .page-header { margin-bottom: 0.5rem; animation: fadeIn 1.5s ease; }
     .page-header img { width: 140px; height: auto; transition: transform 0.4s ease; }
-    .page-header img:hover { transform: scale(1.05); }
-    main { width: 100%; }
-    .mascot { max-width: 320px; width: 100%; height: auto; margin: 1rem 0; animation: fadeIn 1.5s ease 0.3s both; }
-
-    /* --- Typografie --- */
+    main { width: 100%; max-width: 600px; margin: 0 auto; }
+    .mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem 0; animation: fadeIn 1.5s ease 0.3s both; }
     h1 { font-size: clamp(2.5rem, 10vw, 3rem); margin: 0.25rem 0; }
-    p { font-size: 1.125rem; max-width: 60ch; margin: 0 auto 1rem; line-height: 1.6; }
-
-    /* --- Formulář --- */
-    .form-section { margin-top: 0.5rem; }
+    p { font-size: 1.125rem; max-width: 60ch; margin: 0 auto 1.5rem; line-height: 1.6; }
+    .form-section { margin-top: 1rem; }
     .form-section p { font-style: italic; margin-bottom: 1rem; font-size: 1rem; }
     .signup-form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .signup-form input[type="email"] { padding: 0.75rem; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; width: 90%; max-width: 400px; box-sizing: border-box; }
     .signup-form button[type="submit"] { background-color: var(--accent); color: white; border: none; padding: 0.8rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; }
-    .signup-form button[type="submit"]:hover { background-color: var(--accent-hover); }
     .privacy-note { font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.8; }
-
-    /* --- Media Queries a Animace --- */
-    @media (min-width: 768px) { .page-header img { width: 180px; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
 
-    /* === Styly pro Přepínač Jazyků === */
+    /* === Styly pro Přepínač Jazyků s Vlajkami === */
     #lang-switcher {
       position: absolute;
       top: 10px;
       right: 15px;
       left: 15px;
-      background-color: rgba(255, 255, 255, 0.2);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-      border-radius: 8px;
       padding: 5px;
       display: flex;
       flex-wrap: wrap; 
       justify-content: center;
-      gap: 5px; 
+      gap: 8px; 
       z-index: 100;
     }
-    #lang-switcher a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 2px 6px; 
-      border-radius: 4px;
-      transition: background-color 0.2s, color 0.2s;
+    #lang-switcher button {
+      background-color: transparent;
+      border: 2px solid transparent;
+      border-radius: 50%; /* Kulaté tlačítka */
+      padding: 0;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    #lang-switcher a:hover { background-color: rgba(0, 0, 0, 0.1); }
-    #lang-switcher a.active { background-color: var(--accent); color: white; }
-    @media (prefers-color-scheme: dark) {
-      #lang-switcher { background-color: rgba(0, 0, 0, 0.3); }
-      #lang-switcher a { color: var(--text-dark); }
-      #lang-switcher a:hover { background-color: rgba(255, 255, 255, 0.15); }
+    #lang-switcher button:hover {
+      transform: scale(1.1);
     }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    #lang-switcher button.active {
+      border-color: var(--accent);
+    }
+    #lang-switcher svg {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
   </style>
-
 </head>
 <body>
 
+  <!-- Přepínač jazyků s vlajkami -->
   <div id="lang-switcher">
-    <a href="#" data-lang="en">EN</a>
-    <a href="#" data-lang="cs">CS</a>
-    <a href="#" data-lang="de">DE</a>
-    <a href="#" data-lang="pl">PL</a>
-    <a href="#" data-lang="uk">UK</a>
-    <a href="#" data-lang="it">IT</a>
-    <a href="#" data-lang="fr">FR</a>
-    <a href="#" data-lang="es">ES</a>
-    <a href="#" data-lang="zh">ZH</a>
+    <button data-lang="en" aria-label="Switch to English">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#00247d" d="M0 0h5v3H0z"/><path fill="#fff" d="m0 0 5 3m0-3L0 3"/><path stroke="#cf142b" stroke-width=".6" d="m0 0 5 3m0-3L0 3"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#fff" stroke-width=".2"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#cf142b" stroke-width=".2"/></svg>
+    </button>
+    <button data-lang="cs" aria-label="Přepnout na Češtinu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#d7141a" d="M0 1.5h5v1.5H0z"/><path fill="#11457e" d="m0 0 2 1.5L0 3z"/></svg>
+    </button>
+    <button data-lang="de" aria-label="Auf Deutsch umschalten">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path d="M0 0h5v3H0z"/><path fill="#d00" d="M0 1h5v1H0z"/><path fill="#ffce00" d="M0 2h5v1H0z"/></svg>
+    </button>
+    <button data-lang="pl" aria-label="Przełącz na Polski">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#dc143c" d="M0 1.5h5v1.5H0z"/></svg>
+    </button>
+    <button data-lang="uk" aria-label="Переключитися на Українську">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#0057b7" d="M0 0h5v3H0z"/><path fill="#ffd700" d="M0 1.5h5v1.5H0z"/></svg>
+    </button>
+    <button data-lang="it" aria-label="Passa all'Italiano">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ce2b37" d="M2 0h1v2H2z"/></svg>
+    </button>
+    <button data-lang="fr" aria-label="Passer au Français">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#0055a4" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ef4135" d="M2 0h1v2H2z"/></svg>
+    </button>
+    <button data-lang="es" aria-label="Cambiar a Español">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#c60b1e" d="M0 0h5v3H0z"/><path fill="#ffc400" d="M0 .75h5v1.5H0z"/></svg>
+    </button>
+    <button data-lang="zh" aria-label="切换到中文">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#ee1c25" d="M0 0h5v3H0z"/><path fill="#ffde00" d="m.9 1.1-.2-.7.7.2-.6-.4.5.5L1 .5l-.2.7-.6-.4.5.5-.6-.4.7.2z"/></svg>
+    </button>
   </div>
 
   <header class="page-header">
@@ -121,18 +130,14 @@
   <main>
     <h1 data-key="title">Coming Soon</h1>
     <p class="main-desc" data-key="subtitle">Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.</p>
-    
     <img src="assets/airvero-visual-updated.png" alt="Two friendly Airvero mascot characters" class="mascot">
-    
     <section class="form-section">
       <p class="form-text" data-key="formText">Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
-      
       <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
         <label for="email-input" class="sr-only">Email</label>
         <input type="email" id="email-input" name="fields[email]" required placeholder="Enter your email" data-key="emailPlaceholder" />
         <button type="submit" data-key="buttonText">Notify Me</button>
       </form>
-      
       <p class="privacy-note" data-key="privacyNote">We respect your privacy. No spam, ever.</p>
     </section>
   </main>
@@ -220,14 +225,16 @@
       document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (t[key] !== undefined) {
-          if (key === 'emailPlaceholder') element.placeholder = t[key];
-          else if (key === 'formText') element.innerHTML = t[key];
-          else element.innerText = t[key];
+          if (key === 'emailPlaceholder') { element.placeholder = t[key]; }
+          else if (key === 'formText') { element.innerHTML = t[key]; }
+          else { element.innerText = t[key]; }
         }
       });
-      document.querySelectorAll('#lang-switcher a').forEach(a => {
-        a.classList.remove('active');
-        if (a.getAttribute('data-lang') === lang) a.classList.add('active');
+      document.querySelectorAll('#lang-switcher button').forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('data-lang') === lang) {
+          button.classList.add('active');
+        }
       });
     }
 
@@ -243,15 +250,18 @@
       applyTranslations(initialLang);
       const langSwitcher = document.getElementById('lang-switcher');
       langSwitcher.addEventListener('click', (event) => {
-        event.preventDefault(); 
-        const selectedLang = event.target.getAttribute('data-lang');
-        if (selectedLang) {
-          applyTranslations(selectedLang);
-          localStorage.setItem('user-lang', selectedLang);
+        // Změna: Cílíme na tlačítko, i když se klikne na SVG uvnitř
+        const button = event.target.closest('button');
+        if (button) {
+            event.preventDefault(); 
+            const selectedLang = button.getAttribute('data-lang');
+            if (selectedLang) {
+                applyTranslations(selectedLang);
+                localStorage.setItem('user-lang', selectedLang);
+            }
         }
       });
     });
   </script>
 </body>
 </html>
-
