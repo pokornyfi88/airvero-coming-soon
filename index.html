@@ -6,7 +6,6 @@
   <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates.">
   <title>Airvero - Coming Soon</title>
 
-  <!-- FINÁLNÍ ŘEŠENÍ: Veškeré CSS styly jsou vloženy přímo sem -->
   <style>
     /* Globální CSS proměnné */
     :root {
@@ -23,7 +22,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: var(--bg-light);
       color: var(--text-light);
-      padding-top: 70px;
+      padding-top: 60px; /* Zvětšený padding, aby logo nebylo překryto */
       padding-left: 1rem;
       padding-right: 1rem;
       padding-bottom: 2rem;
@@ -58,19 +57,26 @@
       left: 15px;
       padding: 5px;
       display: flex;
-      flex-wrap: wrap; 
+      flex-wrap: nowrap; /* Zabrání zalamování */
+      overflow-x: auto; /* Povolí horizontální rolování, pokud se přesto nevejdou */
       justify-content: center;
-      gap: 8px; 
+      gap: 6px; /* ZMĚNA: Menší mezera */
       z-index: 100;
+      -ms-overflow-style: none;  /* Skrytí scrollbaru pro IE a Edge */
+      scrollbar-width: none;  /* Skrytí scrollbaru pro Firefox */
+    }
+    #lang-switcher::-webkit-scrollbar {
+        display: none; /* Skrytí scrollbaru pro Chrome, Safari a Operu */
     }
     #lang-switcher button {
       background-color: transparent;
       border: 2px solid transparent;
-      border-radius: 50%; /* Kulaté tlačítka */
+      border-radius: 50%;
       padding: 0;
       cursor: pointer;
-      width: 32px;
-      height: 32px;
+      width: 28px; /* ZMĚNA: Menší velikost */
+      height: 28px; /* ZMĚNA: Menší velikost */
+      min-width: 28px; /* Zajistí, že se tlačítko nezmenší */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -83,8 +89,8 @@
       border-color: var(--accent);
     }
     #lang-switcher svg {
-      width: 28px;
-      height: 28px;
+      width: 24px; /* ZMĚNA: Menší velikost */
+      height: 24px; /* ZMĚNA: Menší velikost */
       border-radius: 50%;
       box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
@@ -250,7 +256,6 @@
       applyTranslations(initialLang);
       const langSwitcher = document.getElementById('lang-switcher');
       langSwitcher.addEventListener('click', (event) => {
-        // Změna: Cílíme na tlačítko, i když se klikne na SVG uvnitř
         const button = event.target.closest('button');
         if (button) {
             event.preventDefault(); 
