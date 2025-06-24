@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals. Sign up for launch updates.">
+  <title>Airvero - Coming Soon</title>
+
+  <!-- Odkaz na hlavní styly -->
+  <link rel="stylesheet" href="style-v2.css">
+
+  <!-- FINÁLNÍ OPRAVA: Vložené styly pro přepínač jazyků pro 100% jistotu načtení -->
+  <style>
+    #lang-switcher {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      left: 15px;
+      background-color: rgba(255, 255, 255, 0.2);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      padding: 5px;
+      display: flex;
+      flex-wrap: wrap; 
+      justify-content: center;
+      gap: 5px; 
+      z-index: 100;
+    }
+    #lang-switcher a {
+      color: var(--text-light, #1e2a4a);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 2px 6px; 
+      border-radius: 4px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    #lang-switcher a:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    #lang-switcher a.active {
+      background-color: var(--accent, #f5821f);
+      color: white;
+    }
+    @media (prefers-color-scheme: dark) {
+      #lang-switcher { background-color: rgba(0, 0, 0, 0.3); }
+      #lang-switcher a { color: var(--text-dark, #ffffff); }
+      #lang-switcher a:hover { background-color: rgba(255, 255, 255, 0.15); }
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="lang-switcher">
+    <a href="#" data-lang="en">EN</a>
+    <a href="#" data-lang="cs">CS</a>
+    <a href="#" data-lang="de">DE</a>
+    <a href="#" data-lang="pl">PL</a>
+    <a href="#" data-lang="uk">UK</a>
+    <a href="#" data-lang="it">IT</a>
+    <a href="#" data-lang="fr">FR</a>
+    <a href="#" data-lang="es">ES</a>
+    <a href="#" data-lang="zh">ZH</a>
+  </div>
+
+  <header class="page-header">
+    <img src="assets/airvero-logo.png" alt="Airvero Logo">
+  </header>
+  
+  <main>
+    <h1 data-key="title">Coming Soon</h1>
+    <p class="main-desc" data-key="subtitle">Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.</p>
+    
+    <img src="assets/airvero-visual-updated.png" alt="Two friendly Airvero mascot characters" class="mascot">
+    
+    <section class="form-section">
+      <p class="form-text" data-key="formText">Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong></p>
+      
+      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/1601075/forms/157488091319240372/subscribe" method="post" target="_blank">
+        <label for="email-input" class="sr-only">Email</label>
+        <input type="email" id="email-input" name="fields[email]" required placeholder="Enter your email" data-key="emailPlaceholder" />
+        <button type="submit" data-key="buttonText">Notify Me</button>
+      </form>
+      
+      <p class="privacy-note" data-key="privacyNote">We respect your privacy. No spam, ever.</p>
+    </section>
+  </main>
+
+  <script>
+    const translations = {
+      cs: {
+        title: "Uvedení brzy",
+        subtitle: "Airvero — váš AI pomocník pro nejlepší nabídky letenek. Připravujeme start.",
+        formText: "Zůstaňte v obraze — získejte novinky o spuštění <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Zadejte svůj e-mail",
+        buttonText: "Upozornit mě",
+        privacyNote: "Vaše soukromí je pro nás důležité. Žádný spam."
+      },
+      en: {
+        title: "Coming Soon",
+        subtitle: "Airvero — your AI-powered travel buddy for the best flight deals. We are preparing for takeoff.",
+        formText: "Stay in the loop — get launch updates for <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Enter your email",
+        buttonText: "Notify Me",
+        privacyNote: "We respect your privacy. No spam, ever."
+      },
+      de: {
+        title: "Kommt bald",
+        subtitle: "Airvero – Ihr KI-Reisebegleiter für die besten Flugangebote. Der Start wird vorbereitet.",
+        formText: "Bleiben Sie informiert – erhalten Sie Updates zur Markteinführung von <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Geben Sie Ihre E-Mail ein",
+        buttonText: "Benachrichtigen",
+        privacyNote: "Wir respektieren Ihre Privatsphäre. Kein Spam."
+      },
+      pl: {
+        title: "Wkrótce",
+        subtitle: "Airvero — Twój AI towarzysz podróży, najlepsze oferty lotów. Start wkrótce.",
+        formText: "Bądź na bieżąco — otrzymuj informacje o starcie <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Wpisz swój e-mail",
+        buttonText: "Powiadom mnie",
+        privacyNote: "Szanujemy Twoją prywatność. Zero spamu."
+      },
+      uk: {
+        title: "Скоро старт",
+        subtitle: "Airvero — ваш помічник з AI для пошуку найкращих авіаквитків.",
+        formText: "Будьте в курсі — отримуйте новини про запуск <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Введіть свою електронну пошту",
+        buttonText: "Повідомити мене",
+        privacyNote: "Ми поважаємо вашу конфіденційність. Ніякого спаму."
+      },
+      it: {
+        title: "Prossimamente",
+        subtitle: "Airvero — il tuo compagno di viaggio AI per le migliori offerte di volo.",
+        formText: "Resta aggiornato — ricevi novità sul lancio di <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Inserisci la tua email",
+        buttonText: "Avvisami",
+        privacyNote: "Rispettiamo la tua privacy. Niente spam."
+      },
+      fr: {
+        title: "Bientôt disponible",
+        subtitle: "Airvero — votre assistant de voyage IA pour les meilleures offres de vols.",
+        formText: "Restez informé — recevez les mises à jour du lancement de <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Entrez votre e-mail",
+        buttonText: "Me notifier",
+        privacyNote: "Nous respectons votre vie privée. Jamais de spam."
+      },
+      es: {
+        title: "Próximamente",
+        subtitle: "Airvero — tu compañero de viaje con IA para las mejores ofertas de vuelos.",
+        formText: "Mantente informado — recibe noticias del lanzamiento de <strong><em>Airvero!</em></strong>",
+        emailPlaceholder: "Introduce tu correo",
+        buttonText: "Notificarme",
+        privacyNote: "Respetamos tu privacidad. Nada de spam."
+      },
+      zh: {
+        title: "即将推出",
+        subtitle: "Airvero — 您的AI旅行助手，帮您发现最优航班优惠。",
+        formText: "保持关注 — 获取 <strong><em>Airvero!</em></strong> 的最新消息",
+        emailPlaceholder: "请输入您的邮箱",
+        buttonText: "通知我",
+        privacyNote: "我们尊重您的隐私，绝不发送垃圾邮件。"
+      }
+    };
+
+    function applyTranslations(lang) {
+      const t = translations[lang];
+      if (!t) return;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (t[key] !== undefined) {
+          if (key === 'emailPlaceholder') {
+            element.placeholder = t[key];
+          } else if (key === 'formText') {
+            element.innerHTML = t[key];
+          } else {
+            element.innerText = t[key];
+          }
+        }
+      });
+      document.querySelectorAll('#lang-switcher a').forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('data-lang') === lang) a.classList.add('active');
+      });
+    }
+
+    function getInitialLang() {
+        const savedLang = localStorage.getItem('user-lang');
+        if (savedLang && translations[savedLang]) return savedLang;
+        const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
+        return translations[browserLang] ? browserLang : 'en';
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialLang = getInitialLang();
+      applyTranslations(initialLang);
+      const langSwitcher = document.getElementById('lang-switcher');
+      langSwitcher.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        const selectedLang = event.target.getAttribute('data-lang');
+        if (selectedLang) {
+          applyTranslations(selectedLang);
+          localStorage.setItem('user-lang', selectedLang);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
