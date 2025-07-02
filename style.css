@@ -38,7 +38,7 @@ body {
   z-index: 50;
   box-shadow: var(--header-shadow);
 }
-.logo img { height: 40px; width: auto; }
+.logo img { height: 48px; width: auto; }
 .main-nav a {
   font-weight: 500;
   text-decoration: none;
