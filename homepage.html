@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airvero - Chytré vyhledávání letenek</title>
+    <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    
+    <link rel="stylesheet" href="style.css?v=new_website_1.0">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="site-header">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="homepage.html" class="logo">
+                <img src="https://raw.githubusercontent.com/pokornyfi88/airvero-coming-soon/main/assets/airvero-logo.png" alt="Airvero Logo">
+            </a>
+            <nav class="main-nav">
+                <a href="pruvodce.html">Průvodce destinací</a>
+                <a href="blog.html">Blog</a>
+                <a href="o-nas.html">O nás</a>
+                <a href="kontakt.html">Kontakt</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <div class="container mx-auto px-6 pt-8 pb-12 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold brand-text leading-tight">
+                Letenky <span class="brand-accent">levně</span> a chytře.
+            </h1>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto brand-text opacity-80">
+                Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.
+            </p>
+            <img src="https://raw.githubusercontent.com/pokornyfi88/airvero-coming-soon/main/assets/airvero-visual-updated.png" alt="Airvero Mascots" class="mascot mx-auto">
+            <div id="search-widget-container" class="mt-8 mb-8 w-full max-w-4xl min-h-[150px] flex items-center justify-center">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Airvero. Všechna práva vyhrazena.</p>
+            <div class="mt-4">
+                <a href="o-nas.html" class="footer-link">O nás</a><span class="mx-2">|</span>
+                <a href="kontakt.html" class="footer-link">Kontakt</a><span class="mx-2">|</span>
+                <a href="#" class="footer-link">Ochrana osobních údajů</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const TRAVELPAYOUTS_MARKER_ID = "60381";
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('search-widget-container');
+            if (!container) return;
+            container.innerHTML = '';
+            const script = document.createElement('script');
+            script.src = `//www.travelpayouts.com/widgets/cs/search.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=PRG&destination=BCN&searchUrl=search.airvero.com&host=search.airvero.com`;
+            script.charset = 'UTF-8';
+            script.async = true;
+            container.appendChild(script);
+        });
+    </script>
+</body>
+</html>
+
