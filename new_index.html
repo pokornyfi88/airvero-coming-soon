@@ -7,8 +7,7 @@
     <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
     
-    <!-- OPRAVA: Odkaz na správný soubor new_style.css -->
-    <link rel="stylesheet" href="new_style.css?v=website_v1">
+    <link rel="stylesheet" href="new_style.css?v=full_website_v1">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +16,7 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- ===== HLAVIČKA A NAVIGACE (bude na všech stránkách) ===== -->
+    <!-- ===== HLAVIČKA A NAVIGACE ===== -->
     <header class="site-header">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="new_index.html" class="logo">
@@ -35,20 +34,43 @@
         </div>
     </header>
 
-    <!-- ===== HLAVNÍ OBSAH (bude se měnit pro každou stránku) ===== -->
+    <!-- ===== HLAVNÍ OBSAH ===== -->
     <main class="flex-grow">
-        <div class="container mx-auto px-6 py-12 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold brand-text leading-tight">
+        <div class="container mx-auto px-6 pt-8 pb-12 text-center">
+            
+            <div id="lang-switcher">
+                <button data-lang="en"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#00247d" d="M0 0h5v3H0z"/><path fill="#fff" d="m0 0 5 3m0-3L0 3"/><path stroke="#cf142b" stroke-width=".6" d="m0 0 5 3m0-3L0 3"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#fff" stroke-width=".2"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#cf142b" stroke-width=".2"/></svg></button>
+                <button data-lang="cs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#d7141a" d="M0 1.5h5v1.5H0z"/><path fill="#11457e" d="m0 0 2 1.5L0 3z"/></svg></button>
+                <button data-lang="de"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path d="M0 0h5v3H0z"/><path fill="#d00" d="M0 1h5v1H0z"/><path fill="#ffce00" d="M0 2h5v1H0z"/></svg></button>
+                <button data-lang="pl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#dc143c" d="M0 1.5h5v1.5H0z"/></svg></button>
+                <button data-lang="uk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#0057b7" d="M0 0h5v3H0z"/><path fill="#ffd700" d="M0 1.5h5v1.5H0z"/></svg></button>
+                <button data-lang="it"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ce2b37" d="M2 0h1v2H2z"/></svg></button>
+                <button data-lang="fr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#0055a4" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ef4135" d="M2 0h1v2H2z"/></svg></button>
+                <button data-lang="es"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#c60b1e" d="M0 0h5v3H0z"/><path fill="#ffc400" d="M0 .75h5v1.5H0z"/></svg></button>
+                <button data-lang="zh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#ee1c25" d="M0 0h5v3H0z"/><path fill="#ffde00" d="m.9 1.1-.2-.7.7.2-.6-.4.5.5L1 .5l-.2.7-.6-.4.5.5-.6-.4.7.2z"/></svg></button>
+            </div>
+
+            <h1 data-key="heading" class="text-4xl md:text-6xl font-extrabold brand-text leading-tight">
                 Letenky <span class="brand-accent">chytřeji</span>, ne dráže.
             </h1>
-            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto brand-text opacity-80">
+            <p data-key="subheading" class="mt-4 text-lg md:text-xl max-w-3xl mx-auto brand-text opacity-80">
                 Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.
             </p>
-            <!-- Zde později přijde vyhledávací formulář od Travelpayouts -->
+            
+            <div id="search-widget-container" class="mt-10 mb-8 w-full max-w-4xl min-h-[150px] flex items-center justify-center">
+                <div class="loader"></div>
+            </div>
+
+            <div class="w-full mt-16">
+                <h2 data-key="deals_heading" class="text-3xl font-bold">Nejlepší nabídky z <span id="location-name" class="brand-accent">vašeho okolí</span></h2>
+                <div id="popular-routes-container" class="mt-8 min-h-[400px] flex items-center justify-center">
+                    <div class="loader"></div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- ===== PATIČKA (bude na všech stránkách) ===== -->
+    <!-- ===== PATIČKA ===== -->
     <footer class="site-footer">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; 2025 Airvero. Všechna práva vyhrazena.</p>
@@ -62,6 +84,29 @@
         </div>
     </footer>
 
+    <script>
+        const TRAVELPAYOUTS_MARKER_ID = "60381";
+        const DEFAULT_ORIGIN_IATA = "PRG";
+        const DEFAULT_ORIGIN_NAME = "Prahy";
+        const cityToIata = { 'prague': 'PRG', 'warsaw': 'WAW', 'berlin': 'BER', 'london': 'LHR', 'paris': 'CDG', 'new york': 'JFK', 'los angeles': 'LAX', 'tokyo': 'HND', 'sydney': 'SYD', 'rome': 'FCO', 'madrid': 'MAD' };
+        
+        const translations = {
+            cs: { pageTitle: "Airvero - Chytré vyhledávání letenek", heading: "Letenky <span class='brand-accent'>chytřeji</span>, ne dráže.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
+            en: { pageTitle: "Airvero - Smart Flight Search", heading: "Flights <span class='brand-accent'>smarter</span>, not harder.", subheading: "Your AI travel buddy that scours the internet to find you the best flight deals.", deals_heading: "Best deals from" },
+            de: { pageTitle: "Airvero - Intelligente Flugsuche", heading: "Flüge <span class='brand-accent'>intelligenter</span>, nicht teurer.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
+            pl: { pageTitle: "Airvero - Inteligentne wyszukiwanie lotów", heading: "Loty <span class='brand-accent'>mądrzej</span>, nie drożej.", subheading: "Twój towarzysz podróży AI, który przeszukuje internet, aby znaleźć najlepsze oferty lotów.", deals_heading: "Najlepsze oferty z" },
+            uk: { pageTitle: "Airvero - Розумний пошук авіаквитків", heading: "Авіаквитки <span class='brand-accent'>розумніше</span>, а не дорожче.", subheading: "Ваш AI-помічник у подорожах, який сканує інтернет, щоб знайти найкращі пропозиції на авіаквитки.", deals_heading: "Найкращі пропозиції з" },
+            it: { pageTitle: "Airvero - Ricerca voli intelligente", heading: "Voli <span class='brand-accent'>più intelligenti</span>, non più cari.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
+            fr: { pageTitle: "Airvero - Recherche de vols intelligente", heading: "Vols <span class='brand-accent'>plus intelligents</span>, pas plus chers.", subheading: "Votre compagnon de voyage IA qui parcourt Internet pour vous trouver les meilleures offres de vols.", deals_heading: "Meilleures offres de" },
+            es: { pageTitle: "Airvero - Búsqueda inteligente de vuelos", heading: "Vuelos <span class='brand-accent'>más inteligentes</span>, no más caros.", subheading: "Tu compañero de viaje con IA que rastrea internet para encontrarte las mejores ofertas de vuelos.", deals_heading: "Mejores ofertas desde" },
+            zh: { pageTitle: "Airvero - 智能航班搜索", heading: "航班<span class='brand-accent'>更智能</span>，而非更昂贵。", subheading: "您的AI旅行伙伴，为您搜索互联网，找到最佳航班优惠。", deals_heading: "来自...的最佳优惠" }
+        };
+        let currentLang = 'cs';
+        function applyTranslations(lang) { /* ... */ } // Zkráceno pro přehlednost
+        function createWidget(containerId, widgetScriptSrc) { /* ... */ }
+        async function initializeWidgets() { /* ... */ }
+        document.addEventListener('DOMContentLoaded', () => { /* ... */ });
+    </script>
 </body>
 </html>
 
