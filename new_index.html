@@ -7,26 +7,77 @@
     <meta name="description" content="Airvero - your AI-powered travel buddy for the best flight deals.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
     
-    <link rel="stylesheet" href="new_style.css?v=full_website_v1">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+          --bg-light: #F0F7FF;
+          --bg-dark: #0f1a21;
+          --text-light: #1e2a4a;
+          --text-dark: #ffffff;
+          --accent: #f5821f;
+          --accent-hover: #d96d00;
+        }
+        body {
+          font-family: 'Inter', sans-serif;
+          background-color: var(--bg-light);
+          color: var(--text-light);
+        }
+        @media (prefers-color-scheme: dark) {
+          body { background-color: var(--bg-dark); color: var(--text-dark); }
+          .site-header { background-color: rgba(15, 26, 33, 0.8); }
+          .site-footer { background-color: #132029; border-top-color: #2a3b49; }
+          .main-nav a { color: var(--text-dark); }
+          .footer-link { color: var(--text-dark); }
+          .brand-text { color: var(--text-dark); }
+        }
+        .site-header {
+          background-color: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          box-shadow: 0 4px 20px -15px rgba(30, 42, 74, 0.1);
+        }
+        .logo img { height: 40px; width: auto; }
+        .main-nav { display: none; }
+        @media (min-width: 768px) { .main-nav { display: flex; gap: 2rem; } }
+        .main-nav a { font-weight: 500; text-decoration: none; color: var(--text-light); transition: color 0.2s; position: relative; padding-bottom: 4px; }
+        .main-nav a:after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.3s ease; }
+        .main-nav a:hover:after { width: 100%; }
+        .main-nav a:hover { color: var(--accent); }
+        .site-footer { background-color: #E6F3FB; border-top: 1px solid #dbe9f5; margin-top: auto; }
+        .footer-link { color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+        .footer-link:hover { color: var(--accent); }
+        .brand-text { color: var(--text-light); }
+        .brand-accent { color: var(--accent); }
+        .mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem auto; }
+        #lang-switcher { padding: 5px 0; display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: center; gap: 6px; width: 100%; box-sizing: border-box; margin-bottom: 1.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+        #lang-switcher::-webkit-scrollbar { display: none; }
+        #lang-switcher button { background-color: transparent; border: 2px solid transparent; border-radius: 50%; padding: 0; cursor: pointer; width: 30px; height: 30px; min-width: 30px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, transform 0.2s; }
+        #lang-switcher button:hover { transform: scale(1.1); }
+        #lang-switcher button.active { border-color: var(--accent); }
+        #lang-switcher svg { width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- ===== HLAVIČKA A NAVIGACE ===== -->
     <header class="site-header">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="new_index.html" class="logo">
                 <img src="https://raw.githubusercontent.com/pokornyfi88/airvero-coming-soon/main/assets/airvero-logo.png" alt="Airvero Logo">
             </a>
             <nav class="main-nav">
-                <a href="pruvodce.html">Průvodce destinací</a>
-                <a href="blog.html">Blog</a>
-                <a href="o-nas.html">O nás</a>
-                <a href="kontakt.html">Kontakt</a>
+                <a href="#">Průvodce destinací</a>
+                <a href="#">Blog</a>
+                <a href="#">O nás</a>
+                <a href="#">Kontakt</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -34,10 +85,8 @@
         </div>
     </header>
 
-    <!-- ===== HLAVNÍ OBSAH ===== -->
     <main class="flex-grow">
         <div class="container mx-auto px-6 pt-8 pb-12 text-center">
-            
             <div id="lang-switcher">
                 <button data-lang="en"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#00247d" d="M0 0h5v3H0z"/><path fill="#fff" d="m0 0 5 3m0-3L0 3"/><path stroke="#cf142b" stroke-width=".6" d="m0 0 5 3m0-3L0 3"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#fff" stroke-width=".2"/><path fill="#fff" d="M2.5 0v3M0 1.5h5" stroke="#cf142b" stroke-width=".2"/></svg></button>
                 <button data-lang="cs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#d7141a" d="M0 1.5h5v1.5H0z"/><path fill="#11457e" d="m0 0 2 1.5L0 3z"/></svg></button>
@@ -49,18 +98,12 @@
                 <button data-lang="es"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#c60b1e" d="M0 0h5v3H0z"/><path fill="#ffc400" d="M0 .75h5v1.5H0z"/></svg></button>
                 <button data-lang="zh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#ee1c25" d="M0 0h5v3H0z"/><path fill="#ffde00" d="m.9 1.1-.2-.7.7.2-.6-.4.5.5L1 .5l-.2.7-.6-.4.5.5-.6-.4.7.2z"/></svg></button>
             </div>
-
-            <h1 data-key="heading" class="text-4xl md:text-6xl font-extrabold brand-text leading-tight">
-                Letenky <span class="brand-accent">chytřeji</span>, ne dráže.
-            </h1>
-            <p data-key="subheading" class="mt-4 text-lg md:text-xl max-w-3xl mx-auto brand-text opacity-80">
-                Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.
-            </p>
-            
-            <div id="search-widget-container" class="mt-10 mb-8 w-full max-w-4xl min-h-[150px] flex items-center justify-center">
+            <h1 data-key="heading" class="text-4xl md:text-6xl font-extrabold brand-text leading-tight">Letenky <span class="brand-accent">levně</span> a chytře.</h1>
+            <p data-key="subheading" class="mt-4 text-lg md:text-xl max-w-3xl mx-auto brand-text opacity-80">Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.</p>
+            <img src="https://raw.githubusercontent.com/pokornyfi88/airvero-coming-soon/main/assets/airvero-visual-updated.png" alt="Airvero Mascots" class="mascot">
+            <div id="search-widget-container" class="mt-8 mb-8 w-full max-w-4xl min-h-[150px] flex items-center justify-center">
                 <div class="loader"></div>
             </div>
-
             <div class="w-full mt-16">
                 <h2 data-key="deals_heading" class="text-3xl font-bold">Nejlepší nabídky z <span id="location-name" class="brand-accent">vašeho okolí</span></h2>
                 <div id="popular-routes-container" class="mt-8 min-h-[400px] flex items-center justify-center">
@@ -70,15 +113,12 @@
         </div>
     </main>
 
-    <!-- ===== PATIČKA ===== -->
     <footer class="site-footer">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; 2025 Airvero. Všechna práva vyhrazena.</p>
             <div class="mt-4">
-                <a href="o-nas.html" class="footer-link">O nás</a>
-                <span class="mx-2">|</span>
-                <a href="kontakt.html" class="footer-link">Kontakt</a>
-                <span class="mx-2">|</span>
+                <a href="#" class="footer-link">O nás</a><span class="mx-2">|</span>
+                <a href="#" class="footer-link">Kontakt</a><span class="mx-2">|</span>
                 <a href="#" class="footer-link">Ochrana osobních údajů</a>
             </div>
         </div>
@@ -91,18 +131,18 @@
         const cityToIata = { 'prague': 'PRG', 'warsaw': 'WAW', 'berlin': 'BER', 'london': 'LHR', 'paris': 'CDG', 'new york': 'JFK', 'los angeles': 'LAX', 'tokyo': 'HND', 'sydney': 'SYD', 'rome': 'FCO', 'madrid': 'MAD' };
         
         const translations = {
-            cs: { pageTitle: "Airvero - Chytré vyhledávání letenek", heading: "Letenky <span class='brand-accent'>chytřeji</span>, ne dráže.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
-            en: { pageTitle: "Airvero - Smart Flight Search", heading: "Flights <span class='brand-accent'>smarter</span>, not harder.", subheading: "Your AI travel buddy that scours the internet to find you the best flight deals.", deals_heading: "Best deals from" },
-            de: { pageTitle: "Airvero - Intelligente Flugsuche", heading: "Flüge <span class='brand-accent'>intelligenter</span>, nicht teurer.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
-            pl: { pageTitle: "Airvero - Inteligentne wyszukiwanie lotów", heading: "Loty <span class='brand-accent'>mądrzej</span>, nie drożej.", subheading: "Twój towarzysz podróży AI, który przeszukuje internet, aby znaleźć najlepsze oferty lotów.", deals_heading: "Najlepsze oferty z" },
-            uk: { pageTitle: "Airvero - Розумний пошук авіаквитків", heading: "Авіаквитки <span class='brand-accent'>розумніше</span>, а не дорожче.", subheading: "Ваш AI-помічник у подорожах, який сканує інтернет, щоб знайти найкращі пропозиції на авіаквитки.", deals_heading: "Найкращі пропозиції з" },
-            it: { pageTitle: "Airvero - Ricerca voli intelligente", heading: "Voli <span class='brand-accent'>più intelligenti</span>, non più cari.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
-            fr: { pageTitle: "Airvero - Recherche de vols intelligente", heading: "Vols <span class='brand-accent'>plus intelligents</span>, pas plus chers.", subheading: "Votre compagnon de voyage IA qui parcourt Internet pour vous trouver les meilleures offres de vols.", deals_heading: "Meilleures offres de" },
-            es: { pageTitle: "Airvero - Búsqueda inteligente de vuelos", heading: "Vuelos <span class='brand-accent'>más inteligentes</span>, no más caros.", subheading: "Tu compañero de viaje con IA que rastrea internet para encontrarte las mejores ofertas de vuelos.", deals_heading: "Mejores ofertas desde" },
-            zh: { pageTitle: "Airvero - 智能航班搜索", heading: "航班<span class='brand-accent'>更智能</span>，而非更昂贵。", subheading: "您的AI旅行伙伴，为您搜索互联网，找到最佳航班优惠。", deals_heading: "来自...的最佳优惠" }
+            cs: { pageTitle: "Airvero - Letenky levně a chytře", heading: "Letenky <span class='brand-accent'>levně</span> a chytře.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
+            en: { pageTitle: "Airvero - Flights cheap and smart", heading: "Flights <span class='brand-accent'>cheap</span> and smart.", subheading: "Your AI travel buddy that scours the internet to find you the best flight deals.", deals_heading: "Best deals from" },
+            de: { pageTitle: "Airvero - Flüge günstig und clever", heading: "Flüge <span class='brand-accent'>günstig</span> und clever.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
+            pl: { pageTitle: "Airvero - Tanie i sprytne loty", heading: "Loty <span class='brand-accent'>tanie</span> i sprytne.", subheading: "Twój towarzysz podróży AI, który przeszukuje internet, aby znaleźć najlepsze oferty lotów.", deals_heading: "Najlepsze oferty z" },
+            uk: { pageTitle: "Airvero - Дешеві та розумні авіаквитки", heading: "Авіаквитки <span class='brand-accent'>дешево</span> та розумно.", subheading: "Ваш AI-помічник у подорожах, який сканує інтернет, щоб знайти найкращі пропозиції на авіаквитки.", deals_heading: "Найкращі пропозиції з" },
+            it: { pageTitle: "Airvero - Voli economici e intelligenti", heading: "Voli <span class='brand-accent'>economici</span> e intelligenti.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
+            fr: { pageTitle: "Airvero - Vols pas chers et intelligents", heading: "Vols <span class='brand-accent'>pas chers</span> et intelligents.", subheading: "Votre compagnon de voyage IA qui parcourt Internet pour vous trouver les meilleures offres de vols.", deals_heading: "Meilleures offres de" },
+            es: { pageTitle: "Airvero - Vuelos baratos e inteligentes", heading: "Vuelos <span class='brand-accent'>baratos</span> e inteligentes.", subheading: "Tu compañero de viaje con IA que rastrea internet para encontrarte las mejores ofertas de vuelos.", deals_heading: "Mejores ofertas desde" },
+            zh: { pageTitle: "Airvero - 便宜又智能的航班", heading: "航班<span class='brand-accent'>便宜</span>又智能。", subheading: "您的AI旅行伙伴，为您搜索互联网，找到最佳航班优惠。", deals_heading: "来自...的最佳优惠" }
         };
         let currentLang = 'cs';
-        function applyTranslations(lang) { /* ... */ } // Zkráceno pro přehlednost
+        function applyTranslations(lang) { /* ... */ }
         function createWidget(containerId, widgetScriptSrc) { /* ... */ }
         async function initializeWidgets() { /* ... */ }
         document.addEventListener('DOMContentLoaded', () => { /* ... */ });
