@@ -1,96 +1,111 @@
 /* Globální CSS proměnné */
 :root {
-  --bg-light: #e6f3fb;
+  --bg-light: #F0F7FF;
   --bg-dark: #0f1a21;
   --text-light: #1e2a4a;
   --text-dark: #ffffff;
   --accent: #f5821f;
   --accent-hover: #d96d00;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --header-shadow: 0 4px 20px -15px rgba(30, 42, 74, 0.1);
 }
 
 /* --- Základní styly --- */
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
-  padding: 1rem;
-  box-sizing: border-box; 
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
 }
 
 @media (prefers-color-scheme: dark) {
-  body { background-color: var(--bg-dark); color: var(--text-dark); }
-  .signup-form input[type="email"] { background-color: #1e2a4a; color: var(--text-dark); border-color: #333; }
+  body { 
+    background-color: var(--bg-dark); 
+    color: var(--text-dark); 
+  }
+  .site-header {
+    background-color: rgba(15, 26, 33, 0.8);
+  }
+  .main-nav a { color: var(--text-dark); }
+  .site-footer { background-color: #132029; border-top-color: #2a3b49; }
+  .footer-link { color: var(--text-dark); }
+  .brand-text { color: var(--text-dark); }
 }
 
-/* --- Společné prvky --- */
-.page-header { margin-bottom: 0.5rem; animation: fadeIn 1.5s ease; }
-.page-header img { width: 160px; height: auto; }
-@media (min-width: 768px) { .page-header img { width: 180px; } }
-main { width: 100%; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-.mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem 0; animation: fadeIn 1.5s ease 0.3s both; }
-h1 { font-size: clamp(2.5rem, 10vw, 3rem); margin: 0.25rem 0; }
-p { font-size: 1.125rem; max-width: 60ch; margin: 0 auto 1.5rem; line-height: 1.6; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+/* --- Hlavička a Navigace --- */
+.site-header {
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--header-shadow);
+}
 
-/* --- Formulář na index.html --- */
-.form-section { margin-top: 1rem; }
-.signup-form { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
-.signup-form input[type="email"] { padding: 0.75rem; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; width: 90%; max-width: 400px; box-sizing: border-box; }
-.signup-form button[type="submit"] { background-color: var(--accent); color: white; border: none; padding: 0.8rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; min-width: 120px; }
-.signup-form button:disabled { background-color: #ccc; cursor: not-allowed; }
-.privacy-note { font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.8; }
-#form-error { color: #d7141a; font-weight: bold; margin-top: 10px; display: none; }
+.logo img {
+  height: 40px;
+  width: auto;
+}
 
-/* === Styly pro Přepínač Jazyků === */
-#lang-switcher {
-  padding: 5px;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  justify-content: flex-start;
-  gap: 8px; 
+.main-nav {
+  display: none;
+}
+@media (min-width: 768px) {
+  .main-nav {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+.main-nav a {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text-light);
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.main-nav a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover:after {
   width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
-#lang-switcher::-webkit-scrollbar { display: none; }
-#lang-switcher button {
-  background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  width: 32px; height: 32px;
-  min-width: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.2s, transform 0.2s;
-}
-#lang-switcher button:hover { transform: scale(1.1); }
-#lang-switcher button.active { border-color: var(--accent); }
-#lang-switcher svg { width: 28px; height: 28px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
-/* === Styly pro Děkovací Stránku === */
-.thank-you-container { justify-content: center; }
-.thank-you-container p { margin-bottom: 2rem; }
-.back-link {
-    display: inline-block;
-    background-color: var(--accent);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.main-nav a:hover {
+  color: var(--accent);
 }
-.back-link:hover { transform: translateY(-2px); }
+
+/* --- Patička --- */
+.site-footer {
+  background-color: #E6F3FB;
+  border-top: 1px solid #dbe9f5;
+  margin-top: auto;
+}
+
+.footer-link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+/* --- Ostatní pomocné třídy --- */
+.brand-text { color: var(--text-light); }
+.brand-accent { color: var(--accent); }
+.mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem auto; }
+.loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
