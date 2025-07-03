@@ -27,13 +27,14 @@
           background-color: var(--bg-light);
           color: var(--text-light);
         }
+        /* OPRAVA: Kontrast v tmavém režimu */
         @media (prefers-color-scheme: dark) {
           body { background-color: var(--bg-dark); color: var(--text-dark); }
           .site-header { background-color: rgba(15, 26, 33, 0.8); }
           .main-nav a { color: var(--text-dark); }
           .site-footer { background-color: #132029; border-top-color: #2a3b49; }
           .footer-link { color: var(--text-dark); }
-          .brand-text { color: var(--text-dark); } /* OPRAVA: Text v tmavém režimu bude bílý */
+          .brand-text { color: var(--text-dark); }
           #mobile-menu { background-color: #132029; }
           .mobile-nav-link { color: var(--text-dark); border-bottom-color: #2a3b49; }
         }
@@ -63,14 +64,14 @@
         .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* === Styly pro Přepínač Jazyků (FINÁLNÍ ÚPRAVA VELIKOSTI) === */
+        /* OPRAVA: Vlajky v jedné řadě */
         #lang-switcher {
           padding: 5px 0;
           display: flex;
-          flex-wrap: nowrap; /* Zabrání zalamování */
-          overflow-x: auto; /* Povolí horizontální rolování, POUZE POKUD se přesto nevejdou */
+          flex-wrap: nowrap;
+          overflow-x: auto;
           justify-content: center;
-          gap: 4px; /* ZMĚNA: Nejmenší mezera */
+          gap: 4px;
           width: 100%;
           box-sizing: border-box;
           margin-bottom: 1.5rem;
@@ -84,8 +85,8 @@
           border-radius: 50%;
           padding: 0;
           cursor: pointer;
-          width: 28px; /* ZMĚNA: Finální velikost */
-          height: 28px; /* ZMĚNA: Finální velikost */
+          width: 28px;
+          height: 28px;
           min-width: 28px;
           display: flex;
           align-items: center;
@@ -95,8 +96,8 @@
         #lang-switcher button:hover { transform: scale(1.1); }
         #lang-switcher button.active { border-color: var(--accent); }
         #lang-switcher svg {
-          width: 24px; /* ZMĚNA: Finální velikost */
-          height: 24px; /* ZMĚNA: Finální velikost */
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
           box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
@@ -273,3 +274,4 @@
     </script>
 </body>
 </html>
+
