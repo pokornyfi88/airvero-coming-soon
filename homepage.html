@@ -33,7 +33,7 @@
           .main-nav a { color: var(--text-dark); }
           .site-footer { background-color: #132029; border-top-color: #2a3b49; }
           .footer-link { color: var(--text-dark); }
-          .brand-text { color: var(--text-dark); }
+          .brand-text { color: var(--text-dark); } /* OPRAVA: Text v tmavém režimu bude bílý */
           #mobile-menu { background-color: #132029; }
           .mobile-nav-link { color: var(--text-dark); border-bottom-color: #2a3b49; }
         }
@@ -62,12 +62,44 @@
         .mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem auto; }
         .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #lang-switcher { padding: 5px 0; display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: center; gap: 6px; width: 100%; box-sizing: border-box; margin-bottom: 1.5rem; -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* === Styly pro Přepínač Jazyků (FINÁLNÍ ÚPRAVA VELIKOSTI) === */
+        #lang-switcher {
+          padding: 5px 0;
+          display: flex;
+          flex-wrap: nowrap; /* Zabrání zalamování */
+          overflow-x: auto; /* Povolí horizontální rolování, POUZE POKUD se přesto nevejdou */
+          justify-content: center;
+          gap: 4px; /* ZMĚNA: Nejmenší mezera */
+          width: 100%;
+          box-sizing: border-box;
+          margin-bottom: 1.5rem;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
         #lang-switcher::-webkit-scrollbar { display: none; }
-        #lang-switcher button { background-color: transparent; border: 2px solid transparent; border-radius: 50%; padding: 0; cursor: pointer; width: 30px; height: 30px; min-width: 30px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, transform 0.2s; }
+        #lang-switcher button {
+          background-color: transparent;
+          border: 2px solid transparent;
+          border-radius: 50%;
+          padding: 0;
+          cursor: pointer;
+          width: 28px; /* ZMĚNA: Finální velikost */
+          height: 28px; /* ZMĚNA: Finální velikost */
+          min-width: 28px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: border-color 0.2s, transform 0.2s;
+        }
         #lang-switcher button:hover { transform: scale(1.1); }
         #lang-switcher button.active { border-color: var(--accent); }
-        #lang-switcher svg { width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        #lang-switcher svg {
+          width: 24px; /* ZMĚNA: Finální velikost */
+          height: 24px; /* ZMĚNA: Finální velikost */
+          border-radius: 50%;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -140,7 +172,7 @@
     <script>
         const TRAVELPAYOUTS_MARKER_ID = "60381";
         const DEFAULT_ORIGIN_IATA = "PRG";
-        const DEFAULT_ORIGIN_NAME = { cs: "Prahy", en: "Prague" };
+        const DEFAULT_ORIGIN_NAME = { cs: "Prahy", en: "Prague", de: "Prag", pl: "Pragi", uk: "Праги", it: "Praga", fr: "Prague", es: "Praga", zh: "布拉格" };
         const cityToIata = { 'prague': 'PRG', 'warsaw': 'WAW', 'berlin': 'BER', 'london': 'LHR', 'paris': 'CDG', 'new york': 'JFK', 'los angeles': 'LAX', 'tokyo': 'HND', 'sydney': 'SYD', 'rome': 'FCO', 'madrid': 'MAD' };
         
         const translations = {
@@ -241,4 +273,3 @@
     </script>
 </body>
 </html>
-
