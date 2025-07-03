@@ -1,46 +1,117 @@
-/* Base styles */ body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4faff; color: #1a1a1a; }
+/* Globální CSS proměnné */
+:root {
+  --bg-light: #F0F7FF;
+  --bg-dark: #0f1a21;
+  --text-light: #1e2a4a;
+  --text-dark: #ffffff;
+  --accent: #f5821f;
+  --accent-hover: #d96d00;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --header-shadow: 0 4px 20px -15px rgba(30, 42, 74, 0.1);
+}
 
-header { padding: 1rem 2rem; background-color: #ffffff; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+/* --- Základní styly --- */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
 
-header img.logo { height: 40px; }
+@media (prefers-color-scheme: dark) {
+  body { background-color: var(--bg-dark); color: var(--text-dark); }
+  .site-header { background-color: rgba(15, 26, 33, 0.8); }
+  .main-nav a { color: var(--text-dark); }
+  .site-footer { background-color: #132029; border-top-color: #2a3b49; }
+  .footer-link { color: var(--text-dark); }
+  .brand-text { color: var(--text-dark); }
+  #mobile-menu { background-color: #132029; }
+  .mobile-nav-link { color: var(--text-dark); border-bottom-color: #2a3b49; }
+}
 
-nav.language-switcher select { padding: 0.4rem; font-size: 1rem; border-radius: 5px; }
+/* --- Hlavička a Navigace --- */
+.site-header {
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--header-shadow);
+}
+.logo img { height: 48px; width: auto; }
+.main-nav a {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text-light);
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+.main-nav a:after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.3s ease; }
+.main-nav a:hover:after { width: 100%; }
+.main-nav a:hover { color: var(--accent); }
 
-main { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+/* Mobilní menu */
+#mobile-menu {
+    background-color: #fff;
+    padding: 1rem 0;
+}
+.mobile-nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+.mobile-nav-link:last-child {
+    border-bottom: none;
+}
 
-.hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* --- Patička --- */
+.site-footer {
+  background-color: #E6F3FB;
+  border-top: 1px solid #dbe9f5;
+  margin-top: auto;
+}
+.footer-link { color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: var(--accent); }
 
-.hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+/* --- Ostatní pomocné třídy --- */
+.brand-text { color: var(--text-light); }
+.brand-accent { color: var(--accent); }
+.mascot { max-width: 300px; width: 80%; height: auto; margin: 1.5rem auto; }
+.loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.hero p { font-size: 1.2rem; margin-bottom: 1.5rem; max-width: 600px; }
-
-.search-form { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem; }
-
-.search-form input, .search-form button, .search-form select { padding: 0.75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; }
-
-.search-form button { background-color: #ff6b00; color: white; border: none; cursor: pointer; transition: background-color 0.2s ease; }
-
-.search-form button:hover { background-color: #e85a00; }
-
-.best-deals { margin-top: 3rem; }
-
-.best-deals h2 { text-align: center; margin-bottom: 1.5rem; }
-
-.deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-
-.deal-card { background-color: white; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; align-items: center; }
-
-.deal-card img { width: 100%; border-radius: 10px; margin-bottom: 0.5rem; }
-
-.deal-card .info { text-align: center; }
-
-.ai-helper { margin-top: 4rem; text-align: center; }
-
-.ai-helper img { max-width: 250px; margin-bottom: 1rem; }
-
-footer { margin-top: 4rem; background-color: #ffffff; padding: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
-
-@media (max-width: 768px) { .hero h1 { font-size: 2rem; }
-
-.search-form { grid-template-columns: 1fr; } }
+/* === Styly pro Přepínač Jazyků === */
+#lang-switcher {
+  padding: 5px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+  gap: 6px; 
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#lang-switcher::-webkit-scrollbar { display: none; }
+#lang-switcher button {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  width: 30px; height: 30px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+#lang-switcher button:hover { transform: scale(1.1); }
+#lang-switcher button.active { border-color: var(--accent); }
+#lang-switcher svg { width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
