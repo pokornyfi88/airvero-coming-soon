@@ -202,7 +202,7 @@
                     console.error("Could not detect location, using default:", error);
                 }
 
-                const searchWidgetSrc = `//www.travelpayouts.com/widgets/${currentLang}/search.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&searchUrl=search.airvero.com&host=search.airvero.com&powered_by=false`;
+                const searchWidgetSrc = `//www.travelpayouts.com/widgets/${currentLang}/search.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&searchUrl=airvero.com&host=airvero.com&powered_by=false`;
                 const popularRoutesSrc = `//www.travelpayouts.com/widgets/${currentLang}/popular_routes.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&routes=&limit=15&powered_by=false`;
                 
                 createWidget('search-widget-container', searchWidgetSrc);
