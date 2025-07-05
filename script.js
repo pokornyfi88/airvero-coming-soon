@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const TRAVELPAYOUTS_MARKER_ID = "60381";
     const DEFAULT_ORIGIN_IATA = "PRG";
-    const DEFAULT_ORIGIN_NAME = { cs: "Prahy", en: "Prague" };
+    const DEFAULT_ORIGIN_NAME = { cs: "Prahy", en: "Prague", de: "Prag", pl: "Pragi", uk: "Праги", it: "Praga", fr: "Prague", es: "Praga", zh: "布拉格" };
     const cityToIata = { 'prague': 'PRG', 'warsaw': 'WAW', 'berlin': 'BER', 'london': 'LHR', 'paris': 'CDG', 'new york': 'JFK', 'los angeles': 'LAX', 'tokyo': 'HND', 'sydney': 'SYD', 'rome': 'FCO', 'madrid': 'MAD' };
     
     const translations = {
         cs: { pageTitle: "Airvero - Letenky levně a chytře", heading: "Letenky <span class='brand-accent'>levně</span> a chytře.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
         en: { pageTitle: "Airvero - Flights cheap and smart", heading: "Flights <span class='brand-accent'>cheap</span> and smart.", subheading: "Your AI travel buddy that scours the internet to find you the best flight deals.", deals_heading: "Best deals from" },
-        de: { pageTitle: "Airvero - Flüge günstig und clever", heading: "Flüge <span class='brand-accent'>günstig</span> und clever.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
+        de: { pageTitle: "Airvero - Flüge günstig und clever", heading: "Flüge <span class='brand-accent'>günstig</span> i clever.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
         pl: { pageTitle: "Airvero - Tanie i sprytne loty", heading: "Loty <span class='brand-accent'>tanie</span> i sprytne.", subheading: "Twój towarzysz podróży AI, który przeszukuje internet, aby znaleźć najlepsze oferty lotów.", deals_heading: "Najlepsze oferty z" },
         uk: { pageTitle: "Airvero - Дешеві та розумні авіаквитки", heading: "Авіаквитки <span class='brand-accent'>дешево</span> та розумно.", subheading: "Ваш AI-помічник у подорожах, який сканує інтернет, щоб знайти найкращі пропозиції на авіаквитки.", deals_heading: "Найкращі пропозиції з" },
         it: { pageTitle: "Airvero - Voli economici e intelligenti", heading: "Voli <span class='brand-accent'>economici</span> e intelligenti.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
@@ -54,15 +54,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function createWidget(containerId, widgetScriptSrc) {
+    // ZMĚNĚNÁ FUNKCE: Nyní vytváří IFRAME místo SCRIPT tagu
+    function createWidget(containerId, widgetSrcUrl) { 
         const container = document.getElementById(containerId);
-        if (!container) return;
-        const script = document.createElement('script');
-        script.src = widgetScriptSrc;
-        script.charset = 'UTF-8';
-        script.async = true;
+        if (!container) {
+            console.error(`Kontejner s ID '${containerId}' nebyl nalezen.`);
+            return;
+        }
+
+        // Vyčistíme kontejner od načítacího kolečka nebo předchozích widgetů
         container.innerHTML = ''; 
-        container.appendChild(script);
+
+        // Vytvoříme IFRAME element
+        const iframe = document.createElement('iframe');
+        iframe.src = widgetSrcUrl; // URL Travelpayouts widgetu půjde do src IFRAME
+        iframe.width = '100%'; // Nastavte šířku na 100%, aby se přizpůsobila rodičovskému prvku
+        iframe.height = containerId === 'search-widget-container' ? '450px' : '600px'; // Přibližné výšky, můžete upravit
+        iframe.frameBorder = '0'; // Odstraní rámeček iframe
+        iframe.scrolling = 'no'; // 'no' zabrání posuvníkům, pokud se vejdou. 'auto' je bezpečnější pro přetečení.
+        iframe.allowTransparency = 'true';
+        iframe.style.border = 'none'; // Další styl pro odstranění rámečku
+        iframe.style.width = '100%'; // Pro jistotu, i když už je v attribute width
+        iframe.style.height = containerId === 'search-widget-container' ? '450px' : '600px'; // Pro jistotu
+        iframe.style.display = 'block'; // Zajistí, že iframe není inline element
+
+        // Přidáme iframe do kontejneru
+        container.appendChild(iframe);
     }
 
     async function initializePage() {
@@ -85,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Could not detect location, using default:", error);
         }
 
+        // Tyto URL jsou nyní správné pro vložení do IFRAME src
         const searchWidgetSrc = `//www.travelpayouts.com/widgets/${currentLang}/search.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&searchUrl=airvero.com&host=airvero.com&powered_by=false`;
         const popularRoutesSrc = `//www.travelpayouts.com/widgets/${currentLang}/popular_routes.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&routes=&limit=15&powered_by=false`;
         
@@ -92,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createWidget('popular-routes-container', popularRoutesSrc);
     }
 
-    // --- MAIN EXECUTION ---
+    // --- HLAVNÍ PROVEDENÍ ---
     createLangSwitcher();
     let detectedLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
     if(!translations[detectedLang]) detectedLang = 'en';
@@ -105,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedLang = button.getAttribute('data-lang');
             if(selectedLang && selectedLang !== currentLang) {
                 applyTranslations(selectedLang);
+                // Zobrazíme načítací kolečka, než se widgety znovu načtou
                 document.getElementById('search-widget-container').innerHTML = '<div class="loader"></div>';
                 document.getElementById('popular-routes-container').innerHTML = '<div class="loader"></div>';
                 initializePage(); 
@@ -123,5 +142,3 @@ document.addEventListener('DOMContentLoaded', () => {
         closeIcon.classList.toggle('hidden');
     });
 });
-
-          
