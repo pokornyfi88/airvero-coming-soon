@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         cs: { pageTitle: "Airvero - Letenky levně a chytře", heading: "Letenky <span class='brand-accent'>levně</span> a chytře.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
         en: { pageTitle: "Airvero - Flights cheap and smart", heading: "Flights <span class='brand-accent'>cheap</span> and smart.", subheading: "Your AI travel buddy that scours the internet to find you the best flight deals.", deals_heading: "Best deals from" },
-        de: { pageTitle: "Airvero - Flüge günstig und clever", heading: "Flüge <span class='brand-accent'>günstig</span> i clever.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
+        de: { pageTitle: "Airvero - Flüge günstig und clever", heading: "Flüge <span class='brand-accent'>günstig</span> und clever.", subheading: "Ihr KI-Reisebegleiter, der das Internet für Sie durchsucht, um die besten Flugangebote zu finden.", deals_heading: "Beste Angebote aus" },
         pl: { pageTitle: "Airvero - Tanie i sprytne loty", heading: "Loty <span class='brand-accent'>tanie</span> i sprytne.", subheading: "Twój towarzysz podróży AI, który przeszukuje internet, aby znaleźć najlepsze oferty lotów.", deals_heading: "Najlepsze oferty z" },
         uk: { pageTitle: "Airvero - Дешеві та розумні авіаквитки", heading: "Авіаквитки <span class='brand-accent'>дешево</span> та розумно.", subheading: "Ваш AI-помічник у подорожах, який сканує інтернет, щоб знайти найкращі пропозиції на авіаквитки.", deals_heading: "Найкращі пропозиції з" },
-        it: { pageTitle: "Airvero - Voli economici e intelligenti", heading: "Voli <span class='brand-accent'>economici</span> i intelligenti.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
-        fr: { pageTitle: "Airvero - Vols pas chers et intelligents", heading: "Vols <span class='brand-accent'>pas chers</span> i intelligents.", subheading: "Votre compagnon de voyage IA qui parcourt Internet pour vous trouver les meilleures offres de vols.", deals_heading: "Meilleures offres de" },
-        es: { pageTitle: "Airvero - Vuelos baratos e inteligentes", heading: "Vuelos <span class='brand-accent'>baratos</span> i inteligentes.", subheading: "Tu compañero de viaje con IA que rastrea internet para encontrarte las mejores ofertas de vuelos.", deals_heading: "Mejores ofertas desde" },
-        zh: { pageTitle: "Airvero - 便宜又智能的航班", heading: "航班<span class='brand-accent'>便宜</span> i智能。", subheading: "您的AI旅行伙伴，为您搜索互联网，找到最佳航班优惠。", deals_heading: "来自...的最佳优惠" }
+        it: { pageTitle: "Airvero - Voli economici e intelligenti", heading: "Voli <span class='brand-accent'>economici</span> e intelligenti.", subheading: "Il tuo compagno di viaggio AI che scandaglia internet per trovare le migliori offerte di voli.", deals_heading: "Migliori offerte da" },
+        fr: { pageTitle: "Airvero - Vols pas chers et intelligents", heading: "Vols <span class='brand-accent'>pas chers</span> et intelligents.", subheading: "Votre compagnon de voyage IA qui parcourt Internet pour vous trouver les meilleures offres de vols.", deals_heading: "Meilleures offres de" },
+        es: { pageTitle: "Airvero - Vuelos baratos e inteligentes", heading: "Vuelos <span class='brand-accent'>baratos</span> e inteligentes.", subheading: "Tu compañero de viaje con IA que rastrea internet para encontrarte las mejores ofertas de vuelos.", deals_heading: "Mejores ofertas desde" },
+        zh: { pageTitle: "Airvero - 便宜又智能的航班", heading: "航班<span class='brand-accent'>便宜</span>又智能。", subheading: "您的AI旅行伙伴，为您搜索互联网，找到最佳航班优惠。", deals_heading: "来自...的最佳优惠" }
     };
     let currentLang = 'cs';
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // VRÁCENÁ FUNKCE: Nyní vytváří SKRIPT tag (správně pro tpemb.com/content)
+    // FUNKCE CREATEWIDGET: Vytváří SKRIPT tag
     function createWidget(containerId, widgetScriptSrc) { 
         const container = document.getElementById(containerId);
         if (!container) {
@@ -62,18 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Vyčistíme kontejner od načítacího kolečka nebo předchozích widgetů
-        container.innerHTML = ''; 
+        container.innerHTML = ''; // Vyčistíme kontejner
 
-        // Vytvoříme SCRIPT element
         const script = document.createElement('script');
-        script.src = widgetScriptSrc; // URL Travelpayouts widgetu půjde do src SCRIPT tagu
-        script.charset = 'utf-8'; // Zajištění kódování
-        script.async = true; // Asynchronní načítání
+        script.src = widgetScriptSrc;
+        script.charset = 'utf-8';
+        script.async = true;
 
-        // Přidáme script do kontejneru
-        // Travelpayouts widgety často fungují tak, že se vloží do kontejneru,
-        // a pak si samy vytvoří iframe nebo custom element uvnitř.
         container.appendChild(script);
     }
 
@@ -97,24 +92,17 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Could not detect location, using default:", error);
         }
 
-        // *** ZDE POUŽIJTE PŘESNOU URL, KTEROU JSTE DOSTAL Z GENERÁTORU WIDGETU (tu dlouhou s tpemb.com/content) ***
-        // A DŮLEŽITÉ: musíte dynamicky vložit originIata a currentLang do té URL.
-        // Následující je PŘÍKLAD, musíte si ji upravit podle té své dlouhé URL:
-        const BASE_SEARCH_URL = `https://tpemb.com/content?currency=czk&trs=433005&shmarker=${TRAVELPAYOUTS_MARKER_ID}.homepage-search-form&combine_promos=101_7873&show_hotels=true&powered_by=true`;
-        const COLORS_PARAMS = `&primary_override=%23F5821f&color_button=%23F5821f&color_icons=%231E2A4a&dark=%231E2A4a&light=%23FFFFFf&secondary=%23F0F7Ff&special=%23D3DCE6&color_focused=%23F5821f&border_radius=0&no_labels=&plain=true&promo_id=7879&campaign_id=100`;
-
-        const searchWidgetSrc = `${BASE_SEARCH_URL}&locale=${currentLang}&searchUrl=search.jetradar.com&origin=${originIata}${COLORS_PARAMS}`;
+        // --- URL PRO VYHLEDÁVACÍ FORMULÁŘ ---
+        // Váš kód z generátoru. Host je zde search.jetradar.com
+        const searchWidgetSrc = `https://tpemb.com/content?currency=czk&trs=433005&shmarker=${TRAVELPAYOUTS_MARKER_ID}.homepage-search-form&combine_promos=101_7873&show_hotels=true&powered_by=true&locale=${currentLang}&searchUrl=search.jetradar.com&primary_override=%23F5821f&color_button=%23F5821f&color_icons=%231E2A4a&dark=%231E2A4a&light=%23FFFFFf&secondary=%23F0F7Ff&special=%23D3DCE6&color_focused=%23F5821f&border_radius=0&no_labels=&plain=true&promo_id=7879&campaign_id=100&origin=${originIata}`;
         
-        // Pro popular routes widget musíte jít znovu do generátoru, vybrat popular routes
-        // a získat jeho konkrétní dlouhou URL pro loader script.
-        // Předpokládám prozatím fiktivní URL pro popular routes:
-        const popularRoutesSrc = `https://www.travelpayouts.com/widgets/${currentLang}/popular_routes.js?marker=${TRAVELPAYOUTS_MARKER_ID}&origin=${originIata}&destination=&routes=&limit=15&powered_by=false`;
-        // NEBO spíše pro populární trasy to bude mít podobnou strukturu jako ten search form:
-        // const BASE_POPULAR_URL = `https://tpemb.com/content-popular-routes-specific-id?marker=${TRAVELPAYOUTS_MARKER_ID}.homepage-popular-routes&...`; // (Získejte z generátoru)
-        // const popularRoutesSrc = `${BASE_POPULAR_URL}&locale=${currentLang}&origin=${originIata}&searchUrl=search.jetradar.com`; // (Upravte dle reálných parametrů)
+        // --- URL PRO OBLÍBENÉ TRASY ---
+        // Váš kód z generátoru. Host je zde aviasales.com
+        const popularRoutesSrc = `https://tpemb.com/content?currency=czk&trs=433005&shmarker=${TRAVELPAYOUTS_MARKER_ID}.popular-routes-widget&destination=PRG&target_host=www.aviasales.com%2Fsearch&locale=${currentLang}&limit=10&powered_by=true&primary=%23F5821f&promo_id=4044&campaign_id=100&origin=${originIata}`;
+
 
         createWidget('search-widget-container', searchWidgetSrc);
-        createWidget('popular-routes-container', popularRoutesSrc); // Pokud to je ten starý typ, bude to opět 404/CORB
+        createWidget('popular-routes-container', popularRoutesSrc);
     }
 
     // --- HLAVNÍ PROVEDENÍ ---
@@ -130,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedLang = button.getAttribute('data-lang');
             if(selectedLang && selectedLang !== currentLang) {
                 applyTranslations(selectedLang);
-                // Zobrazíme načítací kolečka, než se widgety znovu načtou
                 document.getElementById('search-widget-container').innerHTML = '<div class="loader"></div>';
                 document.getElementById('popular-routes-container').innerHTML = '<div class="loader"></div>';
                 initializePage(); 
