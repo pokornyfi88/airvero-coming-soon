@@ -1,8 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
     const TRAVELPAYOUTS_MARKER_ID = "60381";
-    const DEFAULT_ORIGIN_IATA = "PRG";
-    const DEFAULT_ORIGIN_NAME = { cs: "Prahy", en: "Prague", de: "Prag", pl: "Pragi", uk: "Праги", it: "Praga", fr: "Prague", es: "Praga", zh: "布拉格" };
-    const cityToIata = { 'prague': 'PRG', 'warsaw': 'WAW', 'berlin': 'BER', 'london': 'LHR', 'paris': 'CDG', 'new york': 'JFK', 'los angeles': 'LAX', 'tokyo': 'HND', 'sydney': 'SYD', 'rome': 'FCO', 'madrid': 'MAD' };
+    
+    // ÚPRAVA: Rozšířená definice výchozích měst a IATA kódů pro každý jazyk
+    const DEFAULT_ORIGIN_NAME = {
+        cs: "Prahy",
+        en: "Prague",
+        de: "Berlína",
+        pl: "Varšavy",
+        uk: "Kyjeva",
+        it: "Říma",
+        fr: "Paříže",
+        es: "Madridu",
+        zh: "Pekingu"
+    };
+    const DEFAULT_ORIGIN_IATA_BY_LANG = {
+        cs: "PRG",
+        en: "PRG",
+        de: "BER",
+        pl: "WAW",
+        uk: "KBP", // Alternativa: IEV, podle toho, co preferujete pro Kyjev
+        it: "FCO",
+        fr: "CDG",
+        es: "MAD",
+        zh: "PEK"
+    };
+
+    const cityToIata = {
+        'prague': 'PRG', 'praha': 'PRG', // Přidáno "praha" pro česky mluvící uživatele
+        'warsaw': 'WAW', 'warszawa': 'WAW',
+        'berlin': 'BER',
+        'london': 'LHR',
+        'paris': 'CDG',
+        'new york': 'JFK',
+        'los angeles': 'LAX',
+        'tokyo': 'HND', // Alternativa: NRT
+        'sydney': 'SYD',
+        'rome': 'FCO', 'roma': 'FCO',
+        'madrid': 'MAD',
+        'kyiv': 'KBP', 'kiev': 'KBP', // Přidáno pro Ukrajinu
+        'peking': 'PEK', 'beijing': 'PEK' // Přidáno pro Čínu
+    };
     
     const translations = {
         cs: { pageTitle: "Airvero - Letenky levně a chytře", heading: "Letenky <span class='brand-accent'>levně</span> a chytře.", subheading: "Váš AI parťák, který za vás prohledá internet a najde ty nejlepší nabídky letenek.", deals_heading: "Nejlepší nabídky z" },
@@ -22,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cs: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#d7141a" d="M0 1.5h5v1.5H0z"/><path fill="#11457e" d="m0 0 2 1.5L0 3z"/></svg>',
         de: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path d="M0 0h5v3H0z"/><path fill="#d00" d="M0 1h5v1H0z"/><path fill="#ffce00" d="M0 2h5v1H0z"/></svg>',
         pl: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#fff" d="M0 0h5v3H0z"/><path fill="#dc143c" d="M0 1.5h5v1.5H0z"/></svg>',
-        uk: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#0057b7" d="M0 0h5v3H0z"/><path fill="#ffd700" d="M0 1.5h5v1.5H0z"/></svg>',
+        uk: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#0057b7" d="M0 0h5v3H0z"/><path fill="#ffd700" d="M0 1.5h5v1v1.5H0z"/></svg>',
         it: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ce2b37" d="M2 0h1v2H2z"/></svg>',
         fr: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#0055a4" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ef4135" d="M2 0h1v2H2z"/></svg>',
         es: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><path fill="#c60b1e" d="M0 0h5v3H0z"/><path fill="#ffc400" d="M0 .75h5v1.5H0z"/></svg>',
@@ -36,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = document.createElement('button');
             button.setAttribute('data-lang', lang);
             button.innerHTML = flags[lang];
+            // Přidáme aria-label pro přístupnost
+            button.setAttribute('aria-label', `Switch to ${translations[lang].pageTitle.split(' - ')[0]} language`);
             switcherContainer.appendChild(button);
         });
     }
@@ -73,10 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function initializePage() {
-        let originIata = DEFAULT_ORIGIN_IATA;
+        // ÚPRAVA: Inicializace s výchozím městem pro daný jazyk
+        let originIata = DEFAULT_ORIGIN_IATA_BY_LANG[currentLang] || DEFAULT_ORIGIN_IATA_BY_LANG['en'];
         let originName = DEFAULT_ORIGIN_NAME[currentLang] || DEFAULT_ORIGIN_NAME['en'];
         
-        document.getElementById('location-name').textContent = originName;
+        document.getElementById('location-name').textContent = originName; // Nastavíme výchozí název pro aktuální jazyk
         
         try {
             const response = await fetch('https://ipapi.co/json/');
@@ -85,11 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const userCity = data.city.toLowerCase();
             
             if (cityToIata[userCity]) {
-                originIata = cityToIata[userCity];
-                document.getElementById('location-name').textContent = data.city;
+                originIata = cityToIata[userCity]; // Pokud detekováno, přepíšeme IATA
+                document.getElementById('location-name').textContent = data.city; // Přepíšeme název města na detekované
             }
         } catch (error) {
-            console.error("Could not detect location, using default:", error);
+            console.error("Could not detect location, using default for current language:", error);
+            // Pokud geolokace selže, zůstane nastaveno DEFAULT_ORIGIN_NAME[currentLang]
         }
 
         // --- URL PRO VYHLEDÁVACÍ FORMULÁŘ ---
@@ -98,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- URL PRO OBLÍBENÉ TRASY ---
         // Váš kód z generátoru. Host je zde aviasales.com
-        const popularRoutesSrc = `https://tpemb.com/content?currency=czk&trs=433005&shmarker=${TRAVELPAYOUTS_MARKER_ID}.popular-routes-widget&destination=PRG&target_host=www.aviasales.com%2Fsearch&locale=${currentLang}&limit=10&powered_by=true&primary=%23F5821f&promo_id=4044&campaign_id=100&origin=${originIata}`;
+        // ÚPRAVA: Odstraněno pevné destination=PRG
+        const popularRoutesSrc = `https://tpemb.com/content?currency=czk&trs=433005&shmarker=${TRAVELPAYOUTS_MARKER_ID}.popular-routes-widget&target_host=www.aviasales.com%2Fsearch&locale=${currentLang}&limit=10&powered_by=true&primary=%23F5821f&promo_id=4044&campaign_id=100&origin=${originIata}&host=aviasales.com`;
 
 
         createWidget('search-widget-container', searchWidgetSrc);
@@ -106,11 +148,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- HLAVNÍ PROVEDENÍ ---
+    // ÚPRAVA: Přidán aria-label pro tlačítko mobilního menu
+    document.getElementById('mobile-menu-button').setAttribute('aria-label', 'Toggle mobile menu');
+
     createLangSwitcher();
     let detectedLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
     if(!translations[detectedLang]) detectedLang = 'en';
     applyTranslations(detectedLang);
-    initializePage();
+    initializePage(); // První inicializace při načtení stránky
 
     document.getElementById('lang-switcher').addEventListener('click', (event) => {
         const button = event.target.closest('button');
@@ -118,9 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedLang = button.getAttribute('data-lang');
             if(selectedLang && selectedLang !== currentLang) {
                 applyTranslations(selectedLang);
+                // Zobrazíme načítací kolečka, než se widgety znovu načtou
                 document.getElementById('search-widget-container').innerHTML = '<div class="loader"></div>';
                 document.getElementById('popular-routes-container').innerHTML = '<div class="loader"></div>';
-                initializePage(); 
+                initializePage(); // RE-inicializace pro nový jazyk
             }
         }
     });
