@@ -23,7 +23,7 @@ body {
   .main-nav a { color: var(--text-dark); }
   .site-footer { background-color: #132029; border-top-color: #2a3b49; }
   .footer-link { color: var(--text-dark); }
-  .brand-text { color: var(--text-dark); }
+  .brand-text { color: var(--text-dark) !important; } /* ÚPRAVA ZDE: přidáno !important */
   #mobile-menu { background-color: #132029; }
   .mobile-nav-link { color: var(--text-dark); border-bottom-color: #2a3b49; }
 }
